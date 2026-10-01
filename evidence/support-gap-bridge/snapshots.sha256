@@ -69,3 +69,5 @@ a283ac689fcb734833195771351a973bea8266ea43df317f1627be7c7282dbb4  evidence/suppo
 8d8ad13d3fe571f6babf8237d3ed3e215bb697594a72166feca352c2133c1657  evidence/support-gap-bridge/worker-before.log
 97dffaa78a67dc087e90903ce614c9509cdbacc9b4238d078472bfc8c2e0fc85  evidence/support-gap-bridge/worker-health.txt
 7eb07a65f7be591f1adbac1b4466fe610114d65df0358857bbc5846e987d0c5a  tests/evals/conversations-v1.json
+edb4d91adadce10159ac94f808253105a623997a543b1af055a2132b37b2260f  evidence/support-gap-bridge/no-mistakes-failed-run.txt
+01f90a5a69b70173c7c56061ec91c44173efb1ab9464458a590acf856b8c5105  evidence/support-gap-bridge/no-mistakes-daemon-status.txt
