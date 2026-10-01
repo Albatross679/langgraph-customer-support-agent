@@ -374,7 +374,8 @@ async def test_customer_lookup_orders_and_scoped_run_access() -> None:
 
     assert matched.customer == repository.customer
     assert missing.customer is None
-    assert orders.orders[0].refund_progress == "awaiting_approval"
+    # A second conversation must not mask the order's terminal approved action.
+    assert orders.orders[0].refund_progress == "approved"
     assert run.run_id == "run-paused"
 
     await write_run_status(redis, "run-paused", status="completed")
@@ -794,7 +795,7 @@ async def test_new_thread_run_clears_values_from_previous_run() -> None:
 
 
 @pytest.mark.asyncio
-async def test_cancelled_run_is_recorded_as_failed() -> None:
+async def test_cancelled_run_remains_recoverable() -> None:
     class CancelledGraph:
         async def aget_state(self, config: dict[str, Any]) -> Any:
             return SimpleNamespace(values={}, tasks=[])
@@ -813,5 +814,5 @@ async def test_cancelled_run_is_recorded_as_failed() -> None:
         )
 
     stored = json.loads(redis.values["run:run-3"])
-    assert stored["status"] == "failed"
-    assert stored["error"] == "Job cancelled before completion"
+    assert stored["status"] == "running"
+    assert 'error' not in stored

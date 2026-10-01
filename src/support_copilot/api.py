@@ -17,7 +17,13 @@ from psycopg_pool import AsyncConnectionPool
 
 from support_copilot.config import get_settings
 from support_copilot.db import StoreRepository
-from support_copilot.run_store import awaiting_orders_key
+from support_copilot.run_store import (
+    awaiting_orders_key,
+    claim_decision,
+    load_durable_run,
+    save_durable_run,
+    write_run_status,
+)
 from support_copilot.schemas import (
     Customer,
     CustomerIdentificationRequest,
@@ -59,6 +65,14 @@ async def lifespan(app: FastAPI):
     app.state.business_pool = AsyncConnectionPool(settings.database_url, open=False)
     await app.state.business_pool.open()
     app.state.repository = StoreRepository(app.state.business_pool)
+    app.state.redis.durable_pool = app.state.business_pool
+    async with app.state.business_pool.connection() as conn:
+        result = await conn.execute("SELECT payload FROM support_runs")
+        records = await result.fetchall()
+    for (data,) in records:
+        await write_run_status(
+            app.state.redis, data["run_id"], **{k: v for k, v in data.items() if k != "run_id"}
+        )
     yield
     await app.state.redis.aclose()
     await app.state.business_pool.close()
@@ -111,6 +125,11 @@ async def claim_daily_run(redis: Any, limit: int, now: datetime | None = None) -
 
 
 async def read_run(redis: Any, run_id: str) -> dict[str, Any]:
+    pool = getattr(redis, "durable_pool", None)
+    if pool is not None:
+        durable = await load_durable_run(pool, run_id)
+        if durable is not None:
+            return durable
     value = await redis.get(f"run:{run_id}")
     if value is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Run not found")
@@ -181,6 +200,16 @@ async def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.get("/ready")
+async def ready(
+    redis: Any = Depends(redis_client), pool: AsyncConnectionPool = Depends(business_pool)
+) -> dict[str, str]:
+    await redis.ping()
+    async with pool.connection() as conn:
+        await conn.execute("SELECT run_id FROM support_runs LIMIT 1")
+    return {"status": "ready"}
+
+
 @app.post("/customers/identify", response_model=CustomerIdentificationResponse)
 async def identify_customer(
     payload: CustomerIdentificationRequest, repository: StoreRepository = Depends(store_repository)
@@ -216,7 +245,7 @@ async def list_customer_orders(
         orders=[
             order.model_copy(
                 update={"refund_progress": "awaiting_approval"}
-                if order.order_number in awaiting_approval
+                if order.order_number in awaiting_approval and order.refund_progress != "approved"
                 else {}
             )
             for order in orders
@@ -289,20 +318,20 @@ async def create_run(
         await repository.create_thread_owner(thread_id, owner)
     run_id = str(uuid.uuid4())
     preview = " ".join(payload.message.split())[:200]
-    await redis.set(
-        f"run:{run_id}",
-        json.dumps(
-            {
-                "run_id": run_id,
-                "thread_id": thread_id,
-                "status": "queued",
-                "created_at": datetime.now(UTC).isoformat(),
-                "message_preview": preview,
-                "customer_id": customer_id,
-                "order_number": payload.order_number,
-            }
-        ),
-    )
+    data = {
+        "run_id": run_id,
+        "thread_id": thread_id,
+        "status": "queued",
+        "created_at": datetime.now(UTC).isoformat(),
+        "message_preview": preview,
+        "message": payload.message,
+        "customer_id": customer_id,
+        "order_number": payload.order_number,
+    }
+    pool = getattr(redis, "durable_pool", None)
+    if pool is not None:
+        await save_durable_run(pool, data)
+    await redis.set(f"run:{run_id}", json.dumps(data))
     await redis.enqueue_job(
         "run_agent",
         run_id,
@@ -339,9 +368,18 @@ async def list_runs(
     redis: Any = Depends(redis_client),
 ) -> RunList:
     runs: list[RunStatus] = []
-    async for key in redis.scan_iter(match="run:*"):
-        key_text = key.decode() if isinstance(key, bytes) else key
-        run = RunStatus.model_validate(await read_run(redis, key_text.removeprefix("run:")))
+    pool = getattr(redis, "durable_pool", None)
+    if pool is not None:
+        async with pool.connection() as conn:
+            result = await conn.execute("SELECT payload FROM support_runs")
+            records = [row[0] for row in await result.fetchall()]
+    else:
+        records = []
+        async for key in redis.scan_iter(match="run:*"):
+            key_text = key.decode() if isinstance(key, bytes) else key
+            records.append(await read_run(redis, key_text.removeprefix("run:")))
+    for data in records:
+        run = RunStatus.model_validate(data)
         if run_status is None or run.status == run_status:
             runs.append(run)
     runs.sort(key=lambda run: run.created_at or datetime.min.replace(tzinfo=UTC), reverse=True)
@@ -365,7 +403,16 @@ async def decide_run(
     run_id: str, payload: DecisionRequest, redis: Any = Depends(redis_client)
 ) -> RunStatus:
     run = await read_run(redis, run_id)
-    if run["status"] != "awaiting_approval":
+    pool = getattr(redis, "durable_pool", None)
+    if pool is not None:
+        if not await claim_decision(pool, run_id, payload.decision):
+            raise HTTPException(
+                status_code=409,
+                detail="Run is not awaiting approval or a conflicting decision exists",
+            )
+        if run["status"] == "completed":
+            return RunStatus.model_validate(run)
+    elif run["status"] != "awaiting_approval":
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT, detail="Run is not awaiting approval"
         )
@@ -376,7 +423,7 @@ async def decide_run(
         payload.decision,
         _job_id=f"{run_id}:decision",
     )
-    if job is None:
+    if job is None and pool is None:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT, detail="A decision is already queued"
         )

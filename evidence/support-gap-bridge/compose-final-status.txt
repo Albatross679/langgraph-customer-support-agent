@@ -1,0 +1,7 @@
+NAME                                  IMAGE                               COMMAND                  SERVICE            CREATED          STATUS                      PORTS
+support-gap-eval-api-1                support-gap-eval-api                "./docker-entrypoint…"   api                10 minutes ago   Up 9 minutes                127.0.0.1:18082->8000/tcp
+support-gap-eval-fixture-provider-1   support-gap-eval-fixture-provider   "./docker-entrypoint…"   fixture-provider   10 minutes ago   Up 10 minutes               127.0.0.1:18083->8080/tcp
+support-gap-eval-init-1               support-gap-eval-init               "./docker-entrypoint…"   init               10 minutes ago   Exited (0) 10 minutes ago   
+support-gap-eval-postgres-1           pgvector/pgvector:pg16              "docker-entrypoint.s…"   postgres           22 minutes ago   Up 22 minutes (healthy)     127.0.0.1:15482->5432/tcp
+support-gap-eval-redis-1              redis:7.4-alpine                    "docker-entrypoint.s…"   redis              22 minutes ago   Up 9 minutes (healthy)      127.0.0.1:16382->6379/tcp
+support-gap-eval-worker-1             support-gap-eval-worker             "./docker-entrypoint…"   worker             10 minutes ago   Up 9 minutes                

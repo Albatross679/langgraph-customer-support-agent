@@ -1,0 +1,55 @@
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'jsdom@30.0.1',
+npm warn EBADENGINE   required: { node: '^22.22.2 || ^24.15.0 || >=26.0.0' },
+npm warn EBADENGINE   current: { node: 'v25.6.1', npm: '11.9.0' }
+npm warn EBADENGINE }
+
+added 117 packages in 1s
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.21.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.0
+npm notice To update run: npm install -g npm@11.21.0
+npm notice
+
+> portfolio-support-copilot-console@0.2.0 pretest
+> npm run contract:check
+
+
+> portfolio-support-copilot-console@0.2.0 contract:check
+> node scripts/generate-contract.mjs --check
+
+
+> portfolio-support-copilot-console@0.2.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/web
+
+
+ Test Files  9 passed (9)
+      Tests  34 passed (34)
+   Start at  15:47:12
+   Duration  2.69s (transform 690ms, setup 2.32s, import 1.09s, tests 3.88s, environment 10.44s)
+
+
+> portfolio-support-copilot-console@0.2.0 prebuild
+> npm run contract:check
+
+
+> portfolio-support-copilot-console@0.2.0 contract:check
+> node scripts/generate-contract.mjs --check
+
+
+> portfolio-support-copilot-console@0.2.0 build
+> tsc -b && vite build
+
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 25 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.47 kB │ gzip:  0.29 kB
+dist/assets/index-DrigU2fB.css    6.06 kB │ gzip:  1.99 kB
+dist/assets/index-2PvG0IfR.js   223.02 kB │ gzip: 68.29 kB
+
+✓ built in 277ms

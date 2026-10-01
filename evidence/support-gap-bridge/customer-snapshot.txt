@@ -1,0 +1,22 @@
+## Latest page snapshot
+uid=1_0 RootWebArea "Support Copilot" url="http://127.0.0.1:18082/"
+  uid=1_1 banner
+    uid=1_2 link "Support Copilot" url="http://127.0.0.1:18082/"
+      uid=1_3 StaticText "Support Copilot"
+    uid=1_4 navigation "Main navigation"
+      uid=1_5 link "Customer portal" url="http://127.0.0.1:18082/"
+        uid=1_6 StaticText "Customer portal"
+      uid=1_7 link "Employee console" url="http://127.0.0.1:18082/employees"
+        uid=1_8 StaticText "Employee console"
+  uid=1_9 main
+    uid=1_10 StaticText "CUSTOMER PORTAL"
+    uid=1_11 heading "Get support." level="1"
+    uid=1_12 StaticText "Send a message anytime, or look up an order and its refund status."
+    uid=1_13 DisclosureTriangle "Check your orders" expandable
+    uid=1_14 region "Send a support message"
+      uid=1_15 heading "Send a support message" level="2"
+      uid=1_16 StaticText "Ask about returns, region codes, shipping, preorders, damaged discs, order status, or refund status. For example: “Can I return an unopened disc?” or “Where is my order?”"
+      uid=1_17 form
+        uid=1_18 StaticText "Message"
+        uid=1_19 textbox "Message" multiline
+        uid=1_20 button "Start support request"

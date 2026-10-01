@@ -1,0 +1,255 @@
+{
+  "before": [
+    {
+      "order_number": "ORD-1001",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1002",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1003",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1004",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1005",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1006",
+      "refund_status": "none"
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "00a38fcf-0e4f-4934-8d00-4da2081d8fc2",
+      "thread_id": "c5c49483-96a6-48de-aa75-be06a4a67d2b",
+      "status": "awaiting_approval",
+      "created_at": "2026-10-01T19:12:43.868291Z",
+      "message_preview": "My damaged 4K order ORD-1001 needs a refund.",
+      "extraction": {
+        "order_number": "ORD-1001",
+        "product_title": null,
+        "media_format": "unknown",
+        "issue_type": "refund",
+        "sentiment": "neutral"
+      },
+      "route": {
+        "lane": "billing",
+        "handler": "refund",
+        "rationale": "Synthetic transport fixture"
+      },
+      "proposed_refund": {
+        "order_number": "ORD-1001",
+        "amount_cents": 2999,
+        "currency": "USD",
+        "reason": "refund"
+      },
+      "answer": null,
+      "error": null
+    },
+    {
+      "run_id": "f337c7cb-b6d2-492c-a6ff-93b733afa0d0",
+      "thread_id": "7801f356-e701-410d-b97f-3f40291a598e",
+      "status": "awaiting_approval",
+      "created_at": "2026-10-01T19:12:44.389315Z",
+      "message_preview": "My damaged 4K order ORD-1001 needs a refund.",
+      "extraction": {
+        "order_number": "ORD-1001",
+        "product_title": null,
+        "media_format": "unknown",
+        "issue_type": "refund",
+        "sentiment": "neutral"
+      },
+      "route": {
+        "lane": "billing",
+        "handler": "refund",
+        "rationale": "Synthetic transport fixture"
+      },
+      "proposed_refund": {
+        "order_number": "ORD-1001",
+        "amount_cents": 2999,
+        "currency": "USD",
+        "reason": "refund"
+      },
+      "answer": null,
+      "error": null
+    }
+  ],
+  "decisions": [
+    {
+      "http_status": 202,
+      "decision": "approve",
+      "run": {
+        "run_id": "00a38fcf-0e4f-4934-8d00-4da2081d8fc2",
+        "thread_id": "c5c49483-96a6-48de-aa75-be06a4a67d2b",
+        "status": "completed",
+        "created_at": "2026-10-01T19:12:43.868291Z",
+        "message_preview": "My damaged 4K order ORD-1001 needs a refund.",
+        "extraction": {
+          "order_number": "ORD-1001",
+          "product_title": null,
+          "media_format": "unknown",
+          "issue_type": "refund",
+          "sentiment": "neutral"
+        },
+        "route": {
+          "lane": "billing",
+          "handler": "refund",
+          "rationale": "Synthetic transport fixture"
+        },
+        "proposed_refund": {
+          "order_number": "ORD-1001",
+          "amount_cents": 2999,
+          "currency": "USD",
+          "reason": "refund"
+        },
+        "answer": "The simulated refund was approved.",
+        "error": null
+      }
+    },
+    {
+      "http_status": 202,
+      "decision": "reject",
+      "run": {
+        "run_id": "f337c7cb-b6d2-492c-a6ff-93b733afa0d0",
+        "thread_id": "7801f356-e701-410d-b97f-3f40291a598e",
+        "status": "completed",
+        "created_at": "2026-10-01T19:12:44.389315Z",
+        "message_preview": "My damaged 4K order ORD-1001 needs a refund.",
+        "extraction": {
+          "order_number": "ORD-1001",
+          "product_title": null,
+          "media_format": "unknown",
+          "issue_type": "refund",
+          "sentiment": "neutral"
+        },
+        "route": {
+          "lane": "billing",
+          "handler": "refund",
+          "rationale": "Synthetic transport fixture"
+        },
+        "proposed_refund": {
+          "order_number": "ORD-1001",
+          "amount_cents": 2999,
+          "currency": "USD",
+          "reason": "refund"
+        },
+        "answer": "The simulated refund was rejected.",
+        "error": null
+      }
+    }
+  ],
+  "snapshots": [
+    [
+      {
+        "order_number": "ORD-1001",
+        "refund_status": "approved"
+      },
+      {
+        "order_number": "ORD-1002",
+        "refund_status": "none"
+      },
+      {
+        "order_number": "ORD-1003",
+        "refund_status": "none"
+      },
+      {
+        "order_number": "ORD-1004",
+        "refund_status": "none"
+      },
+      {
+        "order_number": "ORD-1005",
+        "refund_status": "none"
+      },
+      {
+        "order_number": "ORD-1006",
+        "refund_status": "none"
+      }
+    ],
+    [
+      {
+        "order_number": "ORD-1001",
+        "refund_status": "rejected"
+      },
+      {
+        "order_number": "ORD-1002",
+        "refund_status": "none"
+      },
+      {
+        "order_number": "ORD-1003",
+        "refund_status": "none"
+      },
+      {
+        "order_number": "ORD-1004",
+        "refund_status": "none"
+      },
+      {
+        "order_number": "ORD-1005",
+        "refund_status": "none"
+      },
+      {
+        "order_number": "ORD-1006",
+        "refund_status": "none"
+      }
+    ]
+  ],
+  "before_decisions": [
+    {
+      "order_number": "ORD-1001",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1002",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1003",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1004",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1005",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1006",
+      "refund_status": "none"
+    }
+  ],
+  "replay_status": 409,
+  "after": [
+    {
+      "order_number": "ORD-1001",
+      "refund_status": "rejected"
+    },
+    {
+      "order_number": "ORD-1002",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1003",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1004",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1005",
+      "refund_status": "none"
+    },
+    {
+      "order_number": "ORD-1006",
+      "refund_status": "none"
+    }
+  ]
+}

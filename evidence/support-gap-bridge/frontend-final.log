@@ -1,0 +1,43 @@
+
+> portfolio-support-copilot-console@0.2.0 pretest
+> npm run contract:check
+
+
+> portfolio-support-copilot-console@0.2.0 contract:check
+> node scripts/generate-contract.mjs --check
+
+
+> portfolio-support-copilot-console@0.2.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/web
+
+
+ Test Files  9 passed (9)
+      Tests  34 passed (34)
+   Start at  16:04:33
+   Duration  2.14s (transform 649ms, setup 1.82s, import 843ms, tests 2.78s, environment 7.88s)
+
+
+> portfolio-support-copilot-console@0.2.0 prebuild
+> npm run contract:check
+
+
+> portfolio-support-copilot-console@0.2.0 contract:check
+> node scripts/generate-contract.mjs --check
+
+
+> portfolio-support-copilot-console@0.2.0 build
+> tsc -b && vite build
+
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 25 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.47 kB │ gzip:  0.29 kB
+dist/assets/index-pr0c8v__.css    6.15 kB │ gzip:  2.01 kB
+dist/assets/index-DHgkPGNo.js   223.02 kB │ gzip: 68.29 kB
+
+✓ built in 72ms

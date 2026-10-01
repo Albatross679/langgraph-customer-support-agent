@@ -182,15 +182,78 @@ class StoreRepository:
             order_number=row["order_number"], amount_cents=row["amount_cents"], reason=reason
         )
 
-    async def record_simulated_refund(self, proposal: RefundProposal, approved: bool) -> None:
-        if proposal.order_number == "unknown":
-            return
+    async def record_simulated_refund(
+        self, proposal: RefundProposal, approved: bool, request_id: str
+    ) -> str:
+        """Commit decision and permitted order transition together, replaying by request ID."""
         async with self.pool.connection() as conn:
-            await conn.execute(
-                "UPDATE orders SET refund_status = %s WHERE order_number = %s",
-                ("approved" if approved else "rejected", proposal.order_number),
-            )
-            await conn.commit()
+            async with conn.transaction():
+                # Serializes even missing orders and concurrent decisions for the same request.
+                await conn.execute(
+                    "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))", (request_id,)
+                )
+                async with conn.cursor(row_factory=dict_row) as cur:
+                    await cur.execute(
+                        "SELECT * FROM refund_decisions WHERE request_id = %s", (request_id,)
+                    )
+                    previous = await cur.fetchone()
+                    if previous:
+                        if (
+                            previous["approved"] != approved
+                            or previous["order_number"] != proposal.order_number
+                        ):
+                            raise ValueError(
+                                "A different decision is already recorded for this request"
+                            )
+                        return previous["outcome"]
+                    await cur.execute(
+                        """SELECT o.refund_status, o.quantity * p.price_cents AS amount_cents
+                           FROM orders o JOIN products p ON p.id = o.product_id
+                           WHERE o.order_number = %s FOR UPDATE OF o""",
+                        (proposal.order_number,),
+                    )
+                    order = await cur.fetchone()
+                    await cur.execute(
+                        "SELECT 1 FROM refund_actions WHERE order_number = %s",
+                        (proposal.order_number,),
+                    )
+                    action_exists = await cur.fetchone() is not None
+                    if not order:
+                        outcome = "No simulated refund was applied: order not found; an order number is required."
+                    elif order["refund_status"] == "approved" or action_exists:
+                        if action_exists and order["refund_status"] != "approved":
+                            await cur.execute(
+                                "UPDATE orders SET refund_status = 'approved' WHERE order_number = %s",
+                                (proposal.order_number,),
+                            )
+                        outcome = "The order already has an approved simulated refund. No additional action was applied."
+                    elif order["amount_cents"] != proposal.amount_cents:
+                        outcome = "No simulated refund was applied: order amount changed; start a new review."
+                    else:
+                        if approved:
+                            await cur.execute(
+                                """INSERT INTO refund_actions (order_number, request_id, amount_cents)
+                                   VALUES (%s, %s, %s) ON CONFLICT (order_number) DO NOTHING
+                                   RETURNING order_number""",
+                                (proposal.order_number, request_id, proposal.amount_cents),
+                            )
+                            if await cur.fetchone() is None:
+                                raise ValueError("Refund ledger conflicts with order status")
+                        await cur.execute(
+                            """UPDATE orders SET refund_status = %s
+                               WHERE order_number = %s AND refund_status IN ('none', 'rejected')""",
+                            ("approved" if approved else "rejected", proposal.order_number),
+                        )
+                        outcome = (
+                            "The simulated refund was approved."
+                            if approved
+                            else "The simulated refund was rejected."
+                        )
+                    await cur.execute(
+                        "INSERT INTO refund_decisions (request_id, order_number, approved, outcome) VALUES (%s, %s, %s, %s)",
+                        (request_id, proposal.order_number, approved, outcome),
+                    )
+                    return outcome
 
 
 def vector_literal(values: Sequence[float]) -> str:

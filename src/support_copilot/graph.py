@@ -8,7 +8,7 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.types import interrupt
 
 from support_copilot.db import StoreRepository
-from support_copilot.schemas import Extraction, RouteDecision, SqlPlan
+from support_copilot.schemas import Extraction, RefundProposal, RouteDecision, SqlPlan
 
 
 class ModelClient(Protocol):
@@ -101,22 +101,27 @@ def build_nodes(deps: GraphDependencies) -> dict[str, Any]:
             rows = json.loads(cached.decode() if isinstance(cached, bytes) else cached)
         return {"tool_context": json.dumps(rows, default=str), "sources": ["business database"]}
 
-    async def refund(state: SupportState) -> dict[str, Any]:
+    async def prepare_refund(state: SupportState) -> dict[str, Any]:
         if state["extraction"] is None:
             raise ValueError("Extraction is missing")
         extraction = Extraction.model_validate(state["extraction"])
         proposal = await deps.repository.refund_proposal(
             extraction.order_number, extraction.issue_type
         )
+        return {"proposed_refund": proposal.model_dump()}
+
+    async def refund(state: SupportState) -> dict[str, Any]:
+        # Checkpoint the proposed amount before asking for a decision. Resume never recalculates it.
+        proposal = RefundProposal.model_validate(state["proposed_refund"])
         decision = interrupt({"proposed_refund": proposal.model_dump()})
+        if decision not in {"approve", "reject"}:
+            raise ValueError("Decision must be approve or reject")
         approved = decision == "approve"
-        await deps.repository.record_simulated_refund(proposal, approved)
+        outcome = await deps.repository.record_simulated_refund(proposal, approved, state["run_id"])
         return {
             "proposed_refund": proposal.model_dump(),
             "decision": "approve" if approved else "reject",
-            "tool_context": "The simulated refund was approved."
-            if approved
-            else "The simulated refund was rejected.",
+            "tool_context": outcome,
             "sources": ["fake business data"],
         }
 
@@ -147,6 +152,7 @@ def build_nodes(deps: GraphDependencies) -> dict[str, Any]:
         "route": route,
         "rag": rag,
         "sql": sql,
+        "prepare_refund": prepare_refund,
         "refund": refund,
         "respond": respond,
     }
@@ -169,8 +175,9 @@ def build_graph(
     builder.add_edge(START, "extract")
     builder.add_edge("extract", "route")
     builder.add_conditional_edges(
-        "route", choose_handler, {"rag": "rag", "sql": "sql", "refund": "refund"}
+        "route", choose_handler, {"rag": "rag", "sql": "sql", "refund": "prepare_refund"}
     )
+    builder.add_edge("prepare_refund", "refund")
     for handler in ("rag", "sql", "refund"):
         builder.add_edge(handler, "respond")
     builder.add_edge("respond", END)
