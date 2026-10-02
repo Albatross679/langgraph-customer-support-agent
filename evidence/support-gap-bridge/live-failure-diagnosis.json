@@ -1,0 +1,38 @@
+{
+  "first_run_pass_count": 34,
+  "case_count": 50,
+  "all_observed_database_invariants_passed": true,
+  "policy_literal_wording_failures": [
+    "conversation-09",
+    "conversation-11",
+    "conversation-14"
+  ],
+  "sql_contract_failures": [
+    "conversation-21",
+    "conversation-22",
+    "conversation-23",
+    "conversation-24",
+    "conversation-25",
+    "conversation-26",
+    "conversation-27",
+    "conversation-28"
+  ],
+  "missing_order_literal_wording_failures": [
+    "conversation-45",
+    "conversation-46",
+    "conversation-47",
+    "conversation-48"
+  ],
+  "customer_next_step_defect": {
+    "case_id": "conversation-30",
+    "evidence": {
+      "sources": [
+        "fake business data"
+      ],
+      "tool_context": "No simulated refund was applied: order amount changed; start a new review."
+    },
+    "actual_answer": "Your refund request for order ORD-3015 is under review. No refund has been issued yet. We will update you once the review is complete."
+  },
+  "scoring_unchanged": true,
+  "rerun_performed": false
+}

@@ -52,7 +52,7 @@ jobs:
             sleep 2
           done
           curl -fsS http://127.0.0.1:18082/ready
-          RUN_ISOLATED_INTEGRATION=1 pytest tests/test_refund_durability.py tests/test_refund_proposal_binding.py
+          RUN_ISOLATED_INTEGRATION=1 pytest tests/test_refund_durability.py tests/test_refund_proposal_binding.py tests/test_legacy_action_projection.py
       - name: Clean up isolated services
         if: always()
         run: docker compose -p support-gap-ci -f docker-compose.yml -f tests/compose.integration.yml down -v

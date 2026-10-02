@@ -11,7 +11,7 @@ async def test_persistent_spending_reservations_survive_proxy_restart(tmp_path, 
     allowance = {
         "approval_reference": "synthetic-test-not-authorization",
         "model": "openai/gpt-4.1-mini",
-        "max_usd": 8,
+        "max_usd": 1,
         "input_usd_per_million": 0.4,
         "output_usd_per_million": 1.6,
         "embedding_usd_per_million": 0.02,
@@ -23,12 +23,13 @@ async def test_persistent_spending_reservations_survive_proxy_restart(tmp_path, 
     monkeypatch.setenv("EVALUATION_BUDGET_FILE", str(state))
     monkeypatch.setenv("OPENROUTER_API_KEY", "synthetic-test-key")
     monkeypatch.setattr(proxy, "allowance", allowance)
-    monkeypatch.setattr(proxy, "chat_calls", 200)
-    monkeypatch.setattr(proxy, "reserved_usd", 5.4)
+    monkeypatch.setattr(proxy, "chat_calls", 400)
+    monkeypatch.setattr(proxy, "reserved_usd", 0.94)
     monkeypatch.setattr(proxy, "embedding_tokens", 1000)
-    monkeypatch.setattr(proxy, "receipts", [{"kind": "chat", "reserved_usd": 5.4}])
+    monkeypatch.setattr(proxy, "receipts", [{"kind": "chat", "reserved_usd": 0.94}])
     monkeypatch.setattr(proxy, "client", None)
     monkeypatch.setattr(proxy, "lock", asyncio.Lock())
+    monkeypatch.setattr(proxy, "budget_stop_reason", None)
     proxy.persist_budget()
     proxy.allowance = None
     proxy.chat_calls = 0
@@ -61,7 +62,7 @@ async def test_persistent_spending_reservations_survive_proxy_restart(tmp_path, 
         lambda **kwargs: real_client(transport=httpx.MockTransport(metadata)),
     )
     await proxy.initialize()
-    assert proxy.chat_calls == 200 and proxy.reserved_usd == 5.4
+    assert proxy.chat_calls == 400 and proxy.reserved_usd == 0.94
     async with real_client(
         transport=httpx.ASGITransport(app=proxy.app), base_url="http://test"
     ) as client:

@@ -26,7 +26,7 @@ async def budget(monkeypatch, tmp_path):
         )
 
     monkeypatch.setenv("OPENROUTER_API_KEY", "synthetic-test-key")
-    monkeypatch.setenv('EVALUATION_BUDGET_FILE', str(tmp_path/'budget.json'))
+    monkeypatch.setenv("EVALUATION_BUDGET_FILE", str(tmp_path / "budget.json"))
     monkeypatch.setattr(proxy, "allowance", capsule)
     monkeypatch.setattr(proxy, "client", httpx.AsyncClient(transport=httpx.MockTransport(upstream)))
     monkeypatch.setattr(proxy, "chat_calls", 0)
@@ -34,6 +34,7 @@ async def budget(monkeypatch, tmp_path):
     monkeypatch.setattr(proxy, "reserved_usd", 0)
     monkeypatch.setattr(proxy, "receipts", [])
     monkeypatch.setattr(proxy, "lock", asyncio.Lock())
+    monkeypatch.setattr(proxy, "budget_stop_reason", None)
     yield calls
     await proxy.client.aclose()
 
@@ -56,6 +57,8 @@ async def test_budget_and_token_ceiling_are_enforced_before_upstream(budget):
         ]
         assert 200 in statuses and statuses[-1] == 429
         assert all(call["max_tokens"] == 1024 for call in budget)
+        assert all(call["provider"]["allow_fallbacks"] is False for call in budget)
+        assert all(call["provider"]["max_price"]["request"] == 0 for call in budget)
         assert proxy.reserved_usd <= 0.01
         n = len(budget)
         assert (
@@ -65,7 +68,7 @@ async def test_budget_and_token_ceiling_are_enforced_before_upstream(budget):
         request = {**payload(), "plugins": [{"id": "web"}]}
         assert (await client.post("/chat/completions", json=request)).status_code == 403
         assert len(budget) == n
-        proxy.chat_calls = 200
+        proxy.chat_calls = 400
         assert (await client.post("/chat/completions", json=payload())).status_code == 429
         assert len(budget) == n
 
@@ -75,7 +78,7 @@ async def test_price_refusal_stays_closed_on_retry(tmp_path, monkeypatch):
     receipt = {
         "approval_reference": "synthetic-test",
         "model": "openai/gpt-4.1-mini",
-        "max_usd": 8,
+        "max_usd": 1,
         "input_usd_per_million": 0.4,
         "output_usd_per_million": 1.6,
         "embedding_usd_per_million": 0.02,

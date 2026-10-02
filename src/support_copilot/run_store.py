@@ -8,9 +8,25 @@ def awaiting_orders_key(customer_id: int) -> str:
 
 async def load_durable_run(pool: Any, run_id: str) -> dict[str, Any] | None:
     async with pool.connection() as conn:
-        result = await conn.execute("SELECT payload FROM support_runs WHERE run_id = %s", (run_id,))
+        result = await conn.execute(
+            """SELECT r.payload, d.outcome FROM support_runs r
+               LEFT JOIN refund_decisions d ON d.request_id = r.run_id
+               WHERE r.run_id = %s""",
+            (run_id,),
+        )
         row = await result.fetchone()
-    return row[0] if row else None
+    return project_action_answer(row[0], row[1]) if row else None
+
+
+def project_action_answer(data: dict[str, Any], outcome: str | None) -> dict[str, Any]:
+    if (
+        outcome
+        and data.get("status") == "completed"
+        and (data.get("route") or {}).get("handler") == "refund"
+    ):
+        # Also correct pre-fix cached model prose without rewriting the original stored answer.
+        return {**data, "answer": outcome}
+    return data
 
 
 async def save_durable_run(pool: Any, data: dict[str, Any]) -> None:

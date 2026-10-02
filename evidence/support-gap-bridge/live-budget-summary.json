@@ -1,0 +1,15 @@
+{
+  "result_sha256": "a3e37ca8dddb84c772d1e11ee53d667db93d97411a10cb0a1ba042c7165d0e36",
+  "planned": 50,
+  "completed": 50,
+  "passed": 34,
+  "requests": 189,
+  "chat_calls": 166,
+  "embedding_calls": 23,
+  "reserved_usd": 0.42151,
+  "reported_usage_cost_usd": 0.02368722,
+  "cost_known_requests": 189,
+  "retained_unknown_reservations": 0,
+  "max_usd": 1,
+  "unknown_charges_released": false
+}

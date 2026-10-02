@@ -126,6 +126,16 @@ def build_nodes(deps: GraphDependencies) -> dict[str, Any]:
         }
 
     async def respond(state: SupportState) -> dict[str, Any]:
+        if state.get("handler") == "refund":
+            # An action result is a committed fact, not a prose-generation task.
+            # Never let a model turn a terminal refusal into a pending review or future promise.
+            response = state.get("tool_context")
+            if not response:
+                raise ValueError("A trusted refund action outcome is required")
+            return {
+                "answer": response,
+                "conversation_history": [{"role": "assistant", "content": response}],
+            }
         history = state.get("conversation_history", [])[-6:]
         prior_context = (
             "\n".join(f"{entry['role'].title()}: {entry['content']}" for entry in history[:-1])

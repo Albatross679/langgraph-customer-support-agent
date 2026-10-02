@@ -1,0 +1,29 @@
+{
+  "approval_reference": "firstmate-support-gap-bridge-004-2026-10-02T01:42:29Z",
+  "max_usd": 1,
+  "reserved_usd": 0.792208,
+  "reported_api_cost_usd": 0.04533804,
+  "reported_cost_request_count": 356,
+  "upstream_request_count": 356,
+  "chat_calls": 310,
+  "embedding_calls": 46,
+  "unknown_reserved_request_count": 0,
+  "full_reservations_retained": true,
+  "scope": "Original v1, startup embeddings, UI regression and fresh v2 run; no reset",
+  "first_live_run": {
+    "completed": 50,
+    "passed": 34
+  },
+  "rescore_v2": {
+    "scorable": 49,
+    "passed": 48,
+    "ambiguous": 1,
+    "new_model_calls": 0
+  },
+  "fresh_v2": {
+    "completed": 50,
+    "passed": 50,
+    "content_sha256": "7947693b7a57b56b32be457b34e8747aaf34521100d3cf3fd636d45a0afab60d"
+  },
+  "separate_ui_regression_conversations": 1
+}

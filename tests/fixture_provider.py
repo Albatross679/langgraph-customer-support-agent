@@ -29,6 +29,7 @@ SQL = {
     "count total order revenue cents": "SELECT sum(o.quantity*p.price_cents) AS revenue_cents FROM orders o JOIN products p ON p.id=o.product_id",
     "count orders by customer": "SELECT customer_id, count(*) AS orders FROM orders GROUP BY customer_id ORDER BY customer_id",
     "count product price range": "SELECT min(price_cents) AS minimum, max(price_cents) AS maximum FROM products",
+    "what are the minimum and maximum product prices in cents?": "SELECT min(price_cents) AS minimum, max(price_cents) AS maximum FROM products",
     "count orders with shipped status": "SELECT count(*) AS shipped FROM orders WHERE status='shipped'",
 }
 
@@ -92,7 +93,11 @@ async def completions(request: Request):
         }
     elif schema == "routedecision":
         handler = (
-            "sql" if "count" in text.lower() else "rag" if "policy" in text.lower() else "refund"
+            "sql"
+            if "count" in text.lower() or "minimum and maximum" in text.lower()
+            else "rag"
+            if "policy" in text.lower()
+            else "refund"
         )
         result = {
             "lane": "billing" if handler == "refund" else "general",

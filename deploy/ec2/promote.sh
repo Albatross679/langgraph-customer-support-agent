@@ -11,12 +11,17 @@ previous="$(docker inspect "$(docker compose ps -q api)" --format '{{.Config.Ima
   echo 'Existing deployment needs an approved one-time immutable-image baseline before rollback is possible.' >&2
   exit 2
 }
+previous_worker="$(docker inspect "$(docker compose ps -q worker)" --format '{{.Config.Image}}')"
+[[ "$previous_worker" == "$previous" ]] || {
+  echo 'API and worker must have the same verified immutable rollback image.' >&2
+  exit 2
+}
 compose() { APP_IMAGE="$1" docker compose -f docker-compose.yml -f compose.image.yml "${@:2}"; }
 healthy() {
   local candidate="$1"
   for _ in $(seq 1 30); do
     if curl --fail --silent --max-time 5 http://127.0.0.1:8000/ready >/dev/null &&
-       compose "$candidate" exec -T worker arq --check-health support_copilot.worker.WorkerSettings >/dev/null 2>&1; then
+       compose "$candidate" exec -T worker arq --check support_copilot.worker.WorkerSettings >/dev/null 2>&1; then
       return 0
     fi
     sleep 2
@@ -26,7 +31,10 @@ healthy() {
 rollback() {
   trap - ERR
   echo 'Promotion failed; restoring prior immutable image.' >&2
-  compose "$previous" up -d --no-build --no-deps api worker
+  compose "$previous" up -d --no-build --no-deps api worker || {
+    echo 'Rollback restoration failed; operator intervention required.' >&2
+    exit 1
+  }
   healthy "$previous" || { echo 'Rollback health failed; operator intervention required.' >&2; exit 1; }
   exit 1
 }

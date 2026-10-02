@@ -1,0 +1,4 @@
+Usage: arq [OPTIONS] WORKER_SETTINGS
+Try 'arq --help' for help.
+
+Error: No such option '--check-health'. Did you mean '--check'?

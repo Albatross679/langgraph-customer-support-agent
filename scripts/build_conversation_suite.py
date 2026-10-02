@@ -1,10 +1,11 @@
 """Generate v1's explicitly synthetic ground-truth suite, not measured results."""
 
+import argparse
 import json
 from pathlib import Path
 
 
-def cases():
+def cases(version=1):
     result = []
     policies = [
         (
@@ -161,10 +162,30 @@ def cases():
                 "expected_actions": 1 if status == "approved" else 0,
             }
         )
-    return [dict(case_id=f"conversation-{i:02}", **case) for i, case in enumerate(result, 1)]
+    output = [dict(case_id=f"conversation-{i:02}", **case) for i, case in enumerate(result, 1)]
+    if version == 2:
+        output[26]["original_ambiguous_question"] = output[26]["message"]
+        output[26]["message"] = "What are the minimum and maximum product prices in cents?"
+        output[26]["clarification"] = (
+            "Explicit min/max, not a count by price bucket. The frozen v1 question is not rescored as clarified."
+        )
+    return output
 
 
 if __name__ == "__main__":
-    output = {"version": 1, "synthetic": True, "historical_evidence": False, "cases": cases()}
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--version", type=int, choices=[1, 2], default=1)
+    version = parser.parse_args().version
+    output = {
+        "version": version,
+        "rubric_version": version,
+        "synthetic": True,
+        "historical_evidence": False,
+        "cases": cases(version),
+    }
+    if version == 1:
+        output.pop("rubric_version")  # Preserve the original serialized v1 contract.
     assert len(output["cases"]) == 50
-    Path("tests/evals/conversations-v1.json").write_text(json.dumps(output, indent=2) + "\n")
+    Path(f"tests/evals/conversations-v{version}.json").write_text(
+        json.dumps(output, indent=2) + "\n"
+    )

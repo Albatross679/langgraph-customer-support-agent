@@ -23,6 +23,7 @@ from redis.asyncio import Redis
 
 from support_copilot.config import Settings
 from support_copilot.db import StoreRepository
+from support_copilot.evaluation_rubric import score_checks
 from support_copilot.graph import GraphDependencies, build_graph
 from support_copilot.model import OpenRouterClient
 
@@ -202,6 +203,8 @@ async def run(args):
                             outcome["fixture_change"] = (
                                 "Quantity changed from 1 to 2 after proposal checkpoint"
                             )
+                        if event == "crash-after-action":
+                            await redis.set(f"eval:arm-crash:{run_id}", "1")
                         response = await client.post(
                             f"/runs/{run_id}/decision", json={"decision": case["decision"]}
                         )
@@ -217,6 +220,12 @@ async def run(args):
                                 await asyncio.sleep(0.1)
                             else:
                                 raise TimeoutError("action commit")
+                            for _ in range(300):
+                                if await redis.get(f"eval:committed:{run_id}"):
+                                    break
+                                await asyncio.sleep(0.1)
+                            else:
+                                raise TimeoutError("post-commit/pre-checkpoint fault barrier")
                             compose(args.project, "kill", "-s", "SIGKILL", "worker")
                             # Redis loss deliberately removes the dead process lock, queue, and API cache.
                             await redis.flushdb()
@@ -318,17 +327,46 @@ async def run(args):
                             word.lower() in answer for word in case["answer_contains"]
                         )
                     outcome["checks"]["completed"] = current["status"] == "completed"
+                    if manifest.get("rubric_version", 1) >= 2:
+                        outcome["checks"] = score_checks(
+                            case, current, outcome["evidence"], outcome["checks"]
+                        )
                     outcome["passed"] = all(outcome["checks"].values())
                 except Exception as error:
                     outcome["error"] = repr(error)
+                    outcome["after"] = snapshot(conn)
+                    if outcome.get("run"):
+                        try:
+                            outcome["actual"] = (
+                                await client.get(f"/runs/{outcome['run']['run_id']}")
+                            ).json()
+                        except httpx.HTTPError:
+                            pass
                 report["cases"].append(outcome)
                 print(case["case_id"], "PASS" if outcome["passed"] else "FAIL", flush=True)
                 Path(args.output).write_text(json.dumps(report, indent=2, default=str) + "\n")
+                if LIVE:
+                    budget = (await client.get("http://127.0.0.1:18084/receipts")).json()
+                    if budget.get("budget_stop_reason"):
+                        report["budget_stop_reason"] = budget["budget_stop_reason"]
+                        break
     await model.close()
     await redis.aclose()
     report["completed_at"] = datetime.now(UTC).isoformat()
     report["measured_pass_count"] = sum(c["passed"] for c in report["cases"])
     report["measured_case_count"] = len(report["cases"])
+    report["planned_case_count"] = len(manifest["cases"])
+    report["completed_conversation_count"] = sum(
+        case.get("actual", {}).get("status") == "completed" for case in report["cases"]
+    )
+    report["not_started_case_ids"] = [
+        case["case_id"] for case in manifest["cases"][len(report["cases"]) :]
+    ]
+    report["unfinished_case_ids"] = [
+        case["case_id"]
+        for case in report["cases"]
+        if case.get("actual", {}).get("status") != "completed"
+    ] + report["not_started_case_ids"]
     async with httpx.AsyncClient() as receipt_client:
         report["transport_receipts"] = (
             await receipt_client.get(

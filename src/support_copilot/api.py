@@ -21,6 +21,7 @@ from support_copilot.run_store import (
     awaiting_orders_key,
     claim_decision,
     load_durable_run,
+    project_action_answer,
     save_durable_run,
     write_run_status,
 )
@@ -371,8 +372,9 @@ async def list_runs(
     pool = getattr(redis, "durable_pool", None)
     if pool is not None:
         async with pool.connection() as conn:
-            result = await conn.execute("SELECT payload FROM support_runs")
-            records = [row[0] for row in await result.fetchall()]
+            result = await conn.execute("""SELECT r.payload, d.outcome FROM support_runs r
+                LEFT JOIN refund_decisions d ON d.request_id = r.run_id""")
+            records = [project_action_answer(row[0], row[1]) for row in await result.fetchall()]
     else:
         records = []
         async for key in redis.scan_iter(match="run:*"):

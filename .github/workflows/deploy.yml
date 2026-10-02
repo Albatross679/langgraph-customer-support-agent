@@ -31,7 +31,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh api repos/${{ github.repository }}/environments/production > /tmp/environment.json
-          python -c 'import json; d=json.load(open("/tmp/environment.json")); assert any(r["type"] == "required_reviewers" and r.get("reviewers") for r in d["protection_rules"]), "Production required reviewers are missing"'
+          python -c 'import json; d=json.load(open("/tmp/environment.json")); assert any(r["type"] == "required_reviewers" and r.get("reviewers") for r in d["protection_rules"]), "Production required reviewers are missing"; assert (d.get("deployment_branch_policy") or {}).get("custom_branch_policies"), "Explicit main-only deployment policy is missing"'
+          gh api repos/${{ github.repository }}/environments/production/deployment-branch-policies > /tmp/branches.json
+          python -c 'import json; d=json.load(open("/tmp/branches.json")); assert [(p["name"], p.get("type", "branch")) for p in d["branch_policies"]] == [("main", "branch")], "Production must permit only main"'
       - name: Require a merged immutable revision
         env:
           REVISION: ${{ inputs.revision }}
@@ -59,7 +61,7 @@ jobs:
             sleep 2
           done
           curl -fsS http://127.0.0.1:18082/ready
-          RUN_ISOLATED_INTEGRATION=1 pytest tests/test_refund_durability.py tests/test_refund_proposal_binding.py
+          RUN_ISOLATED_INTEGRATION=1 pytest tests/test_refund_durability.py tests/test_refund_proposal_binding.py tests/test_legacy_action_projection.py
       - name: Remove isolated stack
         if: always()
         run: docker compose -p support-gap-ci -f docker-compose.yml -f tests/compose.integration.yml down -v
@@ -105,8 +107,8 @@ jobs:
         env:
           IMAGE: ${{ needs.gates.outputs.image }}
         run: |
-          scp -i ~/.ssh/ec2 deploy/ec2/promote.sh deploy/ec2/compose.image.yml ubuntu@18.219.217.47:/opt/portfolio-support-copilot/
-          ssh -i ~/.ssh/ec2 ubuntu@18.219.217.47 "cd /opt/portfolio-support-copilot && sudo bash promote.sh '$IMAGE'"
+          scp -o StrictHostKeyChecking=yes -o BatchMode=yes -o ConnectTimeout=10 -i ~/.ssh/ec2 deploy/ec2/promote.sh deploy/ec2/compose.image.yml ubuntu@18.219.217.47:/opt/portfolio-support-copilot/
+          ssh -o StrictHostKeyChecking=yes -o BatchMode=yes -o ConnectTimeout=10 -i ~/.ssh/ec2 ubuntu@18.219.217.47 "cd /opt/portfolio-support-copilot && sudo bash promote.sh '$IMAGE'"
       - name: Remove ephemeral key
         if: always()
         run: rm -f ~/.ssh/ec2

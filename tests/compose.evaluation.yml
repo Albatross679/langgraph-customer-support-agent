@@ -6,7 +6,7 @@ services:
     command: uvicorn scripts.evaluation_proxy:app --host 0.0.0.0 --port 8080
     volumes:
       - ${EVALUATION_ALLOWANCE_FILE:?Firstmate allowance receipt required}:/allowance.json:ro
-      - evaluation_budget:/evaluation-state
+      - ${EVALUATION_BUDGET_DIR:?One persistent support-project budget directory required}:/evaluation-state
     environment:
       EVALUATION_ALLOWANCE_FILE: /allowance.json
       EVALUATION_BUDGET_FILE: /evaluation-state/budget.json
@@ -20,9 +20,7 @@ services:
       evaluation-proxy:
         condition: service_started
   worker:
+    command: arq scripts.evaluation_worker.WorkerSettings
     environment:
       OPENROUTER_API_KEY: proxy-auth-synthetic
       OPENROUTER_BASE_URL: http://evaluation-proxy:8080
-
-volumes:
-  evaluation_budget:

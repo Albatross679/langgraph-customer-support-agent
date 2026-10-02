@@ -22,6 +22,7 @@ services:
     environment:
       DAILY_RUN_LIMIT: 0
   worker:
+    command: arq scripts.evaluation_worker.WorkerSettings
     environment:
       OPENROUTER_API_KEY: synthetic-not-a-secret
       OPENROUTER_BASE_URL: http://fixture-provider:8080

@@ -12,3 +12,4 @@ dist/
 evidence/support-gap-bridge/evaluation-*.json
 evidence/support-gap-bridge/*.pid
 .evaluation-allowance.json
+.support-evaluation-state/

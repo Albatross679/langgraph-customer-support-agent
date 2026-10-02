@@ -1,0 +1,3 @@
+/usr/local/lib/python3.12/site-packages/langgraph/checkpoint/base/__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+  from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+03:11:20: Health check successful: b'Oct-02 03:11:13 j_complete=63 j_failed=0 j_retried=0 j_ongoing=0 queued=0'

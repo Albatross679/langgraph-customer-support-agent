@@ -1,0 +1,98 @@
+{
+  "original_run": {
+    "run_id": "32b66269-8c9c-498e-9102-1c052e7fd02d",
+    "thread_id": "6aad31b1-fb07-4e91-b3b8-2408342ad922"
+  },
+  "new_run": {
+    "run_id": "230bc49d-1276-4461-995b-a486d3a95eda",
+    "thread_id": "45d44d6d-3044-43e9-9cdf-82b4a63c4cca",
+    "status": "awaiting_approval",
+    "created_at": "2026-10-02T02:41:24.972689Z",
+    "message_preview": "Refund my damaged 4K order ORD-4001.",
+    "extraction": {
+      "order_number": "ORD-4001",
+      "product_title": null,
+      "media_format": "4K UHD",
+      "issue_type": "damaged_disc",
+      "sentiment": "frustrated"
+    },
+    "route": {
+      "lane": "returns",
+      "handler": "refund",
+      "rationale": "The customer explicitly requests a refund for a damaged 4K UHD order, so the refund handler is appropriate and the lane is returns."
+    },
+    "proposed_refund": {
+      "order_number": "ORD-4001",
+      "amount_cents": 2999,
+      "currency": "USD",
+      "reason": "damaged_disc"
+    },
+    "answer": null,
+    "error": null
+  },
+  "paused": {
+    "run_id": "230bc49d-1276-4461-995b-a486d3a95eda",
+    "thread_id": "45d44d6d-3044-43e9-9cdf-82b4a63c4cca",
+    "status": "awaiting_approval",
+    "created_at": "2026-10-02T02:41:24.972689Z",
+    "message_preview": "Refund my damaged 4K order ORD-4001.",
+    "extraction": {
+      "order_number": "ORD-4001",
+      "product_title": null,
+      "media_format": "4K UHD",
+      "issue_type": "damaged_disc",
+      "sentiment": "frustrated"
+    },
+    "route": {
+      "lane": "returns",
+      "handler": "refund",
+      "rationale": "The customer explicitly requests a refund for a damaged 4K UHD order, so the refund handler is appropriate and the lane is returns."
+    },
+    "proposed_refund": {
+      "order_number": "ORD-4001",
+      "amount_cents": 2999,
+      "currency": "USD",
+      "reason": "damaged_disc"
+    },
+    "answer": null,
+    "error": null
+  },
+  "completed": {
+    "run_id": "230bc49d-1276-4461-995b-a486d3a95eda",
+    "thread_id": "45d44d6d-3044-43e9-9cdf-82b4a63c4cca",
+    "status": "completed",
+    "created_at": "2026-10-02T02:41:24.972689Z",
+    "message_preview": "Refund my damaged 4K order ORD-4001.",
+    "extraction": {
+      "order_number": "ORD-4001",
+      "product_title": null,
+      "media_format": "4K UHD",
+      "issue_type": "damaged_disc",
+      "sentiment": "frustrated"
+    },
+    "route": {
+      "lane": "returns",
+      "handler": "refund",
+      "rationale": "The customer explicitly requests a refund for a damaged 4K UHD order, so the refund handler is appropriate and the lane is returns."
+    },
+    "proposed_refund": {
+      "order_number": "ORD-4001",
+      "amount_cents": 2999,
+      "currency": "USD",
+      "reason": "damaged_disc"
+    },
+    "answer": "No simulated refund was applied: order amount changed; start a new review.",
+    "error": null
+  },
+  "order_after": {
+    "order_number": "ORD-4001",
+    "customer_id": 1,
+    "product_id": 1,
+    "quantity": 2,
+    "ordered_at": "2026-10-02T02:41:24.604000Z",
+    "status": "delivered",
+    "refund_status": "none",
+    "id": 25
+  },
+  "body": "Support Copilot\nCustomer portal\nEmployee console\n\nLIVE RUN\n\nWatch the backend work.\n\nRefreshing every 2.5 seconds while the run is in progress.\n\nRefresh now\nRUN ID\n230bc49d-1276-4461-995b-a486d3a95eda\nSTATUS\nCompleted\nStructured extraction\nOrder number\nORD-4001\nProduct title\nNot available yet\nFormat\n4K UHD\nIssue type\ndamaged_disc\nSentiment\nfrustrated\nChosen route\n\nReturns - Refund\n\nThe customer explicitly requests a refund for a damaged 4K UHD order, so the refund handler is appropriate and the lane is returns.\n\nThe backend selects the route and performs the policy or data lookup.\n\nFINAL ANSWER\n\nNo simulated refund was applied: order amount changed; start a new review."
+}
