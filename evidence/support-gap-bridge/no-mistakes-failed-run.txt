@@ -1,0 +1,57 @@
+[33mA new version of no-mistakes is available: v1.72.0 -> v1.84.0
+Run "no-mistakes update" to update[0m
+run: running
+  intent: completed
+  rebase: running
+  rebase: completed
+  review: running
+  review: failed
+run: failed
+run:
+  id: "01M3WQX8VNX7CDN1GCVQ7XA72R"
+  branch: codex/support-gap-bridge
+  status: failed
+  head: a5816b89
+  head_sha: a5816b894fe815632263bb55fdc3a41499edf986
+  findings: none
+  steps[9]{step,status,findings,duration_ms}:
+    intent,completed,0,0
+    rebase,completed,0,570
+    review,failed,0,6957
+    test,pending,0,0
+    document,pending,0,0
+    lint,pending,0,0
+    push,pending,0,0
+    pr,pending,0,0
+    ci,pending,0,0
+branch_sync:
+  state: user_owned
+  changed: false
+  local:
+    branch: codex/support-gap-bridge
+    head: a5816b894fe815632263bb55fdc3a41499edf986
+    clean: true
+  pipeline:
+    run: "01M3WQX8VNX7CDN1GCVQ7XA72R"
+    status: failed
+    phase: ""
+    submitted_head: a5816b894fe815632263bb55fdc3a41499edf986
+    current_head: a5816b894fe815632263bb55fdc3a41499edf986
+    pushed_head: ""
+    pushed_at: 0
+    push_generation: 0
+  target:
+    kind: ""
+    remote: origin
+    url: "https://github.com/Albatross679/portfolio-support-copilot.git"
+    ref: ""
+  remote:
+    observed_head: ""
+    freshness: pipeline_push
+    observed_at: 0
+  relation: equal
+  safety: user_owned
+  pr_state: none
+outcome: failed
+error: "step review failed: agent review: codex exited: exit status 1: {\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'gpt-6.1-sol' model is not supported when using Codex with a ChatGPT account.\"}}"
+help[2]: "Commit post-pipeline follow-up work on top of the existing branch so every pipeline fix commit remains present. Never abort-and-restart, reset, or replace the branch in a way that drops prior gate-fix commits.","Before a post-pipeline local commit or fresh run, follow the exact structured `branch_sync.next_action.command`. A `sync` action may be a strict fast-forward or a content-equivalent diverged advance that anchors the pre-sync head before moving the branch with reset semantics. A `recover_custody` action may be ordinary `no-mistakes axi sync --recover` when unpublished pipeline commits are preserved in the local gate, or exact `no-mistakes axi sync --recover --keep-local` when a bound archive preserves a divergent later head while custody returns at the reported required head, or when that preserved head is unavailable and you are explicitly discarding the missing commits; never substitute one recovery command for the other. A `user_owned` state means cancellation released the branch before changing the submitted head: the exact branch and head are yours, immediately usable, and no sync action is needed. Process blocked or pipeline-owned states instead of improvising reset, stash, merge, rebase, force, or branch replacement."

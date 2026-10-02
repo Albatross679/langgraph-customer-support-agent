@@ -1,0 +1,822 @@
+{
+  "rubric_version": 2,
+  "source_file_sha256": "88824cf89203f094b98fe86e41368def39e018f16481a11c3ef69a4892c62cce",
+  "source_content_sha256": "a3e37ca8dddb84c772d1e11ee53d667db93d97411a10cb0a1ba042c7165d0e36",
+  "fresh_model_run": false,
+  "original_pass_count": 34,
+  "original_case_count": 50,
+  "rescored_pass_count": 48,
+  "scorable_case_count": 49,
+  "ambiguous_case_count": 1,
+  "cases": [
+    {
+      "case_id": "conversation-01",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-02",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-03",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-04",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-05",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-06",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-07",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-08",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-09",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-10",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-11",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-12",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-13",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-14",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-15",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-16",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-17",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-18",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-19",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-20",
+      "original_passed": true,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-21",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "sql_rows": true,
+        "answer_rows": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-22",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "sql_rows": true,
+        "answer_rows": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-23",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "sql_rows": true,
+        "answer_rows": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-24",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "sql_rows": true,
+        "answer_rows": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-25",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "sql_rows": true,
+        "answer_rows": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-26",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "sql_rows": true,
+        "answer_rows": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-27",
+      "original_passed": false,
+      "passed": null,
+      "classification": "ambiguous frozen question",
+      "reason": "Count product price range does not require min/max rather than bucket counts; clarification belongs to manifest v2 only."
+    },
+    {
+      "case_id": "conversation-28",
+      "original_passed": false,
+      "checks": {
+        "database_unchanged": true,
+        "expected_source": true,
+        "sql_rows": true,
+        "answer_rows": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-29",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-30",
+      "original_passed": false,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": false,
+        "completed": true
+      },
+      "passed": false,
+      "classification": "genuine application answer defect"
+    },
+    {
+      "case_id": "conversation-31",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-32",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-33",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-34",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "replay_http": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-35",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "replay_http": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-36",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "replay_http": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-37",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "replay_http": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-38",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "redis_status_recovery": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-39",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "redis_status_recovery": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-40",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-41",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-42",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "replay_http": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-43",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-44",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-45",
+      "original_passed": false,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-46",
+      "original_passed": false,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-47",
+      "original_passed": false,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-48",
+      "original_passed": false,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "confirmed evaluator false negative"
+    },
+    {
+      "case_id": "conversation-49",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "followup_no_write": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    },
+    {
+      "case_id": "conversation-50",
+      "original_passed": true,
+      "checks": {
+        "approval_required": true,
+        "no_write_before_decision": true,
+        "decision_accepted": true,
+        "order_status": true,
+        "order_action_count": true,
+        "unrelated_orders_unchanged": true,
+        "one_decision": true,
+        "prior_actions_immutable": true,
+        "prior_decisions_immutable": true,
+        "only_one_new_decision": true,
+        "exact_new_action_count": true,
+        "followup_no_write": true,
+        "answer": true,
+        "completed": true
+      },
+      "passed": true,
+      "classification": "unchanged"
+    }
+  ]
+}

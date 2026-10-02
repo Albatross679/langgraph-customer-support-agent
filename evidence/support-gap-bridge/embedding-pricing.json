@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-10-01T19:50:02.754091+00:00",
+  "models": [
+    {
+      "id": "openai/text-embedding-3-small",
+      "pricing": {
+        "prompt": "0.00000002",
+        "completion": "0"
+      }
+    }
+  ]
+}

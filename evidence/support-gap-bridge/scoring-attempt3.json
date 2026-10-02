@@ -1,0 +1,258 @@
+{
+  "input_sha256": "b0271ced76376f67d4f24a7fd4e700377f9941246b64a14831aa8672eee7fe0b",
+  "rubric": "SQL numeric values must match gold row/column order exactly; no substring or extra-number credit",
+  "cases": [
+    {
+      "case_id": "conversation-01",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-02",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-03",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-04",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-05",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-06",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-07",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-08",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-09",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-10",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-11",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-12",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-13",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-14",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-15",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-16",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-17",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-18",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-19",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-20",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-21",
+      "numeric_answer_contract": true,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-22",
+      "numeric_answer_contract": true,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-23",
+      "numeric_answer_contract": true,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-24",
+      "numeric_answer_contract": true,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-25",
+      "numeric_answer_contract": true,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-26",
+      "numeric_answer_contract": true,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-27",
+      "numeric_answer_contract": true,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-28",
+      "numeric_answer_contract": true,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-29",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-30",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-31",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-32",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-33",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-34",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-35",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-36",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-37",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-38",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-39",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-40",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-41",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-42",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-43",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-44",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-45",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-46",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-47",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-48",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-49",
+      "numeric_answer_contract": null,
+      "passed": true
+    },
+    {
+      "case_id": "conversation-50",
+      "numeric_answer_contract": null,
+      "passed": true
+    }
+  ],
+  "measured_pass_count": 50,
+  "measured_case_count": 50
+}

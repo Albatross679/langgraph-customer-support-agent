@@ -107,5 +107,11 @@ td code { font-size: 0.78rem; }
   .page { padding-top: 40px; }
   .inline-intro, .detail-grid { align-items: flex-start; display: flex; flex-direction: column; }
   .data-layout { grid-template-columns: 1fr; }
-  .run-summary { gap: 24px; }
+  .message-form > input, .message-form > textarea, .message-form > select { min-width: 0; max-width: 100%; }
+  .order-card { grid-template-columns: minmax(0, 1fr); }
+  .order-card dl { grid-template-columns: minmax(0, 1fr); }
+  .order-card dd { overflow-wrap: anywhere; }
+  .employee-nav { flex-wrap: wrap; gap: 0 16px; }
+  .run-summary { flex-wrap: wrap; gap: 24px; }
+  .run-summary code { overflow-wrap: anywhere; }
 }

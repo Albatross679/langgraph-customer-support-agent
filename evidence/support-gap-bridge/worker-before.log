@@ -1,0 +1,12 @@
+worker-1  | /usr/local/lib/python3.12/site-packages/langgraph/checkpoint/base/__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+worker-1  |   from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+worker-1  | 19:12:09: Starting worker for 2 functions: run_agent, resume_agent
+worker-1  | 19:12:09: redis_version=7.4.11 mem_usage=1.07M clients_connected=2 db_keys=0
+worker-1  | 19:12:44:   0.38s → 00a38fcf-0e4f-4934-8d00-4da2081d8fc2:run_agent('00a38fcf-0e4f-4934-8d00-4da2081d8fc2', 'My damaged 4K order ORD-1001 needs a r…)
+worker-1  | 19:12:44:   0.07s ← 00a38fcf-0e4f-4934-8d00-4da2081d8fc2:run_agent ● {'status': 'awaiting_approval'}
+worker-1  | 19:12:44:   0.36s → f337c7cb-b6d2-492c-a6ff-93b733afa0d0:run_agent('f337c7cb-b6d2-492c-a6ff-93b733afa0d0', 'My damaged 4K order ORD-1001 needs a r…)
+worker-1  | 19:12:44:   0.04s ← f337c7cb-b6d2-492c-a6ff-93b733afa0d0:run_agent ● {'status': 'awaiting_approval'}
+worker-1  | 19:12:45:   0.35s → 00a38fcf-0e4f-4934-8d00-4da2081d8fc2:decision:resume_agent('00a38fcf-0e4f-4934-8d00-4da2081d8fc2', 'c5c49483-96a6-48de-aa75-be06a4a67d2b',…)
+worker-1  | 19:12:45:   0.03s ← 00a38fcf-0e4f-4934-8d00-4da2081d8fc2:decision:resume_agent ● {'extraction': {'order_number': 'ORD-1001', 'product_title': None, 'media_forma…
+worker-1  | 19:12:46:   0.34s → f337c7cb-b6d2-492c-a6ff-93b733afa0d0:decision:resume_agent('f337c7cb-b6d2-492c-a6ff-93b733afa0d0', '7801f356-e701-410d-b97f-3f40291a598e',…)
+worker-1  | 19:12:46:   0.03s ← f337c7cb-b6d2-492c-a6ff-93b733afa0d0:decision:resume_agent ● {'extraction': {'order_number': 'ORD-1001', 'product_title': None, 'media_forma…

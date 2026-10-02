@@ -33,6 +33,37 @@ CREATE TABLE IF NOT EXISTS orders (
   refund_status TEXT NOT NULL DEFAULT 'none' CHECK (refund_status IN ('none', 'approved', 'rejected'))
 );
 
+-- Durable run records are the source of truth; Redis is a queue and read cache.
+CREATE TABLE IF NOT EXISTS support_runs (
+  run_id TEXT PRIMARY KEY,
+  payload JSONB NOT NULL,
+  decision TEXT CHECK (decision IN ('approve', 'reject')),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- One simulated approved action per order, regardless of conversation/run.
+CREATE TABLE IF NOT EXISTS refund_actions (
+  order_number TEXT PRIMARY KEY REFERENCES orders(order_number),
+  action TEXT NOT NULL DEFAULT 'simulated_refund' CHECK (action = 'simulated_refund'),
+  request_id TEXT NOT NULL UNIQUE,
+  amount_cents INTEGER NOT NULL CHECK (amount_cents >= 0),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+-- Adopt legacy simulated approvals without pretending they were paid transactions.
+INSERT INTO refund_actions (order_number, request_id, amount_cents)
+SELECT o.order_number, 'legacy:' || o.order_number, o.quantity * p.price_cents
+FROM orders o JOIN products p ON p.id = o.product_id
+WHERE o.refund_status = 'approved'
+ON CONFLICT DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS refund_decisions (
+  request_id TEXT PRIMARY KEY,
+  order_number TEXT NOT NULL,
+  approved BOOLEAN NOT NULL,
+  outcome TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 CREATE TABLE IF NOT EXISTS runtime_settings (
   key TEXT PRIMARY KEY,
   value INTEGER NOT NULL CHECK (value >= 0)

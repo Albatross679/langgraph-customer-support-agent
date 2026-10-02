@@ -1,0 +1,12 @@
+[
+    {
+        "InstanceId": "i-061f12bce30cfa151",
+        "ImageId": "ami-02c98622c4c3f017d",
+        "InstanceType": "t3.small",
+        "Architecture": "x86_64",
+        "PublicIpAddress": "18.219.217.47",
+        "State": "running",
+        "LaunchTime": "2026-08-30T21:30:21.000Z",
+        "Name": "portfolio-support-copilot-ec2"
+    }
+]

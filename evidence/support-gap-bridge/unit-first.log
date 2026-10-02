@@ -1,0 +1,98 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.12, pytest-8.3.5, pluggy-1.6.0
+rootdir: /Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.14.2, langsmith-0.11.2, asyncio-0.26.0
+asyncio: mode=Mode.AUTO, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 46 items / 3 deselected / 43 selected
+
+tests/test_bootstrap.py .....                                            [ 11%]
+tests/test_deploy_credentials.py ......                                  [ 25%]
+tests/test_nodes.py .........                                            [ 46%]
+tests/test_review_fixes.py ......F...............F                       [100%]
+
+=================================== FAILURES ===================================
+______________ test_customer_lookup_orders_and_scoped_run_access _______________
+
+    @pytest.mark.asyncio
+    async def test_customer_lookup_orders_and_scoped_run_access() -> None:
+        repository = FakeCustomerRepository()
+        repository.orders[0] = repository.orders[0].model_copy(update={"refund_progress": "approved"})
+        redis = FakeRedis({"run_id": "run-paused", "thread_id": "thread-1", "status": "queued"})
+        await write_run_status(
+            redis,
+            "run-paused",
+            status="awaiting_approval",
+            customer_id=1,
+            order_number="ORD-1001",
+        )
+        await write_run_status(
+            redis,
+            "run-paused-2",
+            status="awaiting_approval",
+            customer_id=1,
+            order_number="ORD-1001",
+        )
+    
+        matched = await identify_customer(
+            CustomerIdentificationRequest(name="Maya Chen", email="maya@example.test"), repository
+        )
+        missing = await identify_customer(
+            CustomerIdentificationRequest(name="Maya Chen", email="wrong@example.test"), repository
+        )
+        orders = await list_customer_orders(1, "Maya Chen", "maya@example.test", redis, repository)
+        run = await get_customer_run(
+            1, "run-paused", "Maya Chen", "maya@example.test", redis, repository
+        )
+    
+        assert matched.customer == repository.customer
+        assert missing.customer is None
+>       assert orders.orders[0].refund_progress == "awaiting_approval"
+E       AssertionError: assert 'approved' == 'awaiting_approval'
+E         
+E         - awaiting_approval
+E         + approved
+
+tests/test_review_fixes.py:377: AssertionError
+___________________ test_cancelled_run_is_recorded_as_failed ___________________
+
+    @pytest.mark.asyncio
+    async def test_cancelled_run_is_recorded_as_failed() -> None:
+        class CancelledGraph:
+            async def aget_state(self, config: dict[str, Any]) -> Any:
+                return SimpleNamespace(values={}, tasks=[])
+    
+            async def ainvoke(self, state: dict[str, Any], config: dict[str, Any]) -> None:
+                raise asyncio.CancelledError
+    
+        redis = FakeRedis({"run_id": "run-3", "thread_id": "thread-3", "status": "queued"})
+    
+        with pytest.raises(asyncio.CancelledError):
+            await run_agent(
+                {"redis": redis, "graph": CancelledGraph()},
+                "run-3",
+                "question",
+                "thread-3",
+            )
+    
+        stored = json.loads(redis.values["run:run-3"])
+>       assert stored["status"] == "failed"
+E       AssertionError: assert 'running' == 'failed'
+E         
+E         - failed
+E         + running
+
+tests/test_review_fixes.py:816: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  support_copilot.worker:worker.py:188 run run-3 cancelled; checkpoint recovery will retry
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/langgraph/checkpoint/base/__init__.py:18
+  /Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/.venv/lib/python3.12/site-packages/langgraph/checkpoint/base/__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+    from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_review_fixes.py::test_customer_lookup_orders_and_scoped_run_access
+FAILED tests/test_review_fixes.py::test_cancelled_run_is_recorded_as_failed
+============ 2 failed, 41 passed, 3 deselected, 1 warning in 1.32s =============

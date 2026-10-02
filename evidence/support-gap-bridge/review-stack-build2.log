@@ -1,0 +1,162 @@
+ Image support-gap-review-api Building 
+ Image support-gap-review-worker Building 
+ Image support-gap-review-init Building 
+ Image support-gap-review-fixture-provider Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.35kB done
+#1 DONE 0.0s
+
+#2 [worker internal] load build definition from Dockerfile
+#2 transferring dockerfile: 547B done
+#2 DONE 0.0s
+
+#3 [fixture-provider internal] load metadata for docker.io/library/node:22-alpine
+#3 DONE 0.3s
+
+#4 [fixture-provider internal] load metadata for docker.io/library/python:3.12-slim
+#4 DONE 0.3s
+
+#5 [api internal] load .dockerignore
+#5 transferring context: 134B done
+#5 DONE 0.0s
+
+#6 [fixture-provider console-build 1/6] FROM docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402
+#6 resolve docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402 0.0s done
+#6 DONE 0.0s
+
+#7 [fixture-provider stage-1  1/10] FROM docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+#7 resolve docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016 0.0s done
+#7 DONE 0.0s
+
+#8 [api internal] load build context
+#8 transferring context: 5.04kB done
+#8 DONE 0.0s
+
+#9 [worker console-build 2/6] WORKDIR /web
+#9 CACHED
+
+#10 [worker stage-1  2/10] WORKDIR /app
+#10 CACHED
+
+#11 [worker console-build 4/6] RUN npm ci
+#11 CACHED
+
+#12 [worker stage-1  9/10] COPY --from=console-build /web/dist ./web/dist
+#12 CACHED
+
+#13 [worker stage-1  7/10] COPY docs ./docs
+#13 CACHED
+
+#14 [worker stage-1  8/10] COPY docker-entrypoint.sh ./
+#14 CACHED
+
+#15 [worker stage-1  5/10] RUN pip install --no-cache-dir .
+#15 CACHED
+
+#16 [worker stage-1  4/10] COPY src ./src
+#16 CACHED
+
+#17 [worker console-build 5/6] COPY web ./
+#17 CACHED
+
+#18 [worker stage-1  3/10] COPY pyproject.toml README.md ./
+#18 CACHED
+
+#19 [worker console-build 3/6] COPY web/package*.json ./
+#19 CACHED
+
+#20 [worker console-build 6/6] RUN npm run build
+#20 CACHED
+
+#21 [worker stage-1  6/10] COPY scripts ./scripts
+#21 CACHED
+
+#22 [fixture-provider stage-1 10/10] RUN chmod +x docker-entrypoint.sh
+#22 CACHED
+
+#23 [fixture-provider] exporting to image
+#23 exporting layers done
+#23 exporting manifest sha256:c983376092f806b61ad8811e86354c299340efe2f10bc7bf63b5bf1d8e3ebf60 done
+#23 exporting config sha256:ee66561c6e0e733554bfd531b512d84be24989ca2e4c56d4a460419b0e50b960 done
+#23 exporting attestation manifest sha256:d2551927677b070afd6f6c69f165823725889d703c98080764455ae7db27a8f0
+#23 ...
+
+#24 [init] exporting to image
+#24 exporting layers done
+#24 exporting manifest sha256:e4d770493178a1c2f387244c6aa4fa0ecf18d67c18b7c0b1f2eaf3d8cc1d5020 done
+#24 exporting config sha256:b467c694c6bd5159497437275ec08a30a74d24f32a43ec209fb4e846f574ea74 done
+#24 exporting attestation manifest sha256:57e3734a0a61099f6a0f2f6d799f5b0ade2590f451c6cf706546b7682eebfdda 0.0s done
+#24 exporting manifest list sha256:b07773bc76cb3ef32e4205ab47e41544500c6428354af9e7777e984addf73c98 0.0s done
+#24 naming to docker.io/library/support-gap-review-init:latest done
+#24 unpacking to docker.io/library/support-gap-review-init:latest done
+#24 DONE 0.1s
+
+#23 [fixture-provider] exporting to image
+#23 exporting attestation manifest sha256:d2551927677b070afd6f6c69f165823725889d703c98080764455ae7db27a8f0 0.0s done
+#23 exporting manifest list sha256:5af4fa797c3ebaa324a8157b140473a5b14746b2dea9ebd6249fee06a147fb67 0.0s done
+#23 naming to docker.io/library/support-gap-review-fixture-provider:latest 0.0s done
+#23 unpacking to docker.io/library/support-gap-review-fixture-provider:latest done
+#23 DONE 0.1s
+
+#25 [api] exporting to image
+#25 exporting layers done
+#25 exporting manifest sha256:385421745e20ef3475ab7acff2d753946536633187236164eea0bdffbf8bc418 done
+#25 exporting config sha256:3f8ca59baa71fb8d865d40819d8c22c4e873cdebd575d6ecadd1c3b58f4611d7 done
+#25 exporting attestation manifest sha256:a1621bac5ee4924e1d69a907811fbf8e63e6b4096452a4ea9b0a9d88bab8cb27 0.0s done
+#25 exporting manifest list sha256:5c4b6c245004db7fe3d617937f2bfb5e970ba76ded2677c715b93ac6c6da8383 0.0s done
+#25 naming to docker.io/library/support-gap-review-api:latest done
+#25 unpacking to docker.io/library/support-gap-review-api:latest 0.0s done
+#25 DONE 0.1s
+
+#26 [worker] exporting to image
+#26 exporting layers done
+#26 exporting manifest sha256:ba81b572294452c4b6784947f4a862f7bca2b62b3115cf04b245ef04c297a77b done
+#26 exporting config sha256:f4c229c1e0ae703e2ec7914111f5712700e7f9b11ef2492215b008d52c4358da done
+#26 exporting attestation manifest sha256:e164f30e478fb89c03575bcf63c8a0aa987eafe4e30f1ce9f0a66acdc97c3505 0.0s done
+#26 exporting manifest list sha256:38f158362a87a0f4086fb1ad2677be768db7109f11a6d57a1a3b5392bc31d03c done
+#26 naming to docker.io/library/support-gap-review-worker:latest done
+#26 unpacking to docker.io/library/support-gap-review-worker:latest 0.0s done
+#26 DONE 0.2s
+
+#27 [init] resolving provenance for metadata file
+#27 DONE 0.1s
+
+#28 [worker] resolving provenance for metadata file
+#28 DONE 0.0s
+
+#29 [api] resolving provenance for metadata file
+#29 DONE 0.1s
+
+#30 [fixture-provider] resolving provenance for metadata file
+#30 DONE 0.1s
+ Image support-gap-review-fixture-provider Built 
+ Image support-gap-review-init Built 
+ Image support-gap-review-worker Built 
+ Image support-gap-review-api Built 
+ Container support-gap-review-fixture-provider-1 Recreate 
+ Container support-gap-review-fixture-provider-1 Recreated 
+ Container support-gap-review-init-1 Recreate 
+ Container support-gap-review-init-1 Recreated 
+ Container support-gap-review-api-1 Recreate 
+ Container support-gap-review-worker-1 Recreate 
+ Container support-gap-review-worker-1 Recreated 
+ Container support-gap-review-api-1 Recreated 
+ Container support-gap-review-postgres-1 Starting 
+ Container support-gap-review-redis-1 Starting 
+ Container support-gap-review-fixture-provider-1 Starting 
+ Container support-gap-review-postgres-1 Started 
+ Container support-gap-review-redis-1 Started 
+ Container support-gap-review-fixture-provider-1 Started 
+ Container support-gap-review-postgres-1 Waiting 
+ Container support-gap-review-postgres-1 Healthy 
+ Container support-gap-review-init-1 Starting 
+ Container support-gap-review-init-1 Started 
+ Container support-gap-review-init-1 Waiting 
+ Container support-gap-review-init-1 Waiting 
+ Container support-gap-review-redis-1 Waiting 
+ Container support-gap-review-redis-1 Waiting 
+ Container support-gap-review-redis-1 Healthy 
+ Container support-gap-review-redis-1 Healthy 
+ Container support-gap-review-init-1 Error service "init" didn't complete successfully: exit 1
+ Container support-gap-review-init-1 Error service "init" didn't complete successfully: exit 1
+service "init" didn't complete successfully: exit 1

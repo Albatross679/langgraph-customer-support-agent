@@ -1,0 +1,22 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.12, pytest-8.3.5, pluggy-1.6.0 -- /Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot
+configfile: pyproject.toml
+plugins: anyio-4.14.2, langsmith-0.11.2, asyncio-0.26.0
+asyncio: mode=Mode.AUTO, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 5 items
+
+tests/test_refund_durability.py::test_cross_conversation_decisions_replay_and_redis_loss PASSED [ 20%]
+tests/test_refund_durability.py::test_concurrent_order_actions_and_immutable_decision PASSED [ 40%]
+tests/test_refund_durability.py::test_crash_after_commit_before_checkpoint_replays_action_once PASSED [ 60%]
+tests/test_refund_proposal_binding.py::test_approval_binds_checkpointed_amount_not_a_recalculated_order PASSED [ 80%]
+tests/test_legacy_action_projection.py::test_real_api_projects_old_action_answer_without_rewriting_evidence PASSED [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/langgraph/checkpoint/base/__init__.py:18
+  /Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/.venv/lib/python3.12/site-packages/langgraph/checkpoint/base/__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+    from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 5 passed, 1 warning in 2.61s =========================

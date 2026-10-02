@@ -1,0 +1,7 @@
+services:
+  init:
+    image: ${APP_IMAGE:?APP_IMAGE must be an immutable digest}
+  api:
+    image: ${APP_IMAGE:?APP_IMAGE must be an immutable digest}
+  worker:
+    image: ${APP_IMAGE:?APP_IMAGE must be an immutable digest}

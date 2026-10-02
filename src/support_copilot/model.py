@@ -55,6 +55,7 @@ class OpenRouterClient:
             "model": self.settings.openrouter_model,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
             "temperature": 0,
+            "max_tokens": 1024,
             "response_format": {
                 "type": "json_schema",
                 "json_schema": {
@@ -78,6 +79,7 @@ class OpenRouterClient:
             "model": self.settings.openrouter_model,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
             "temperature": 0,
+            "max_tokens": 1024,
         }
         response = await self._client.post(
             f"{self.settings.openrouter_base_url.rstrip('/')}/chat/completions",

@@ -1,0 +1,626 @@
+{
+  "version": 1,
+  "synthetic": true,
+  "historical_evidence": false,
+  "cases": [
+    {
+      "case_id": "conversation-01",
+      "kind": "policy",
+      "message": "What is the policy for missing box set components?",
+      "source": "box-sets.md",
+      "answer_contains": [
+        "30 days"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-02",
+      "kind": "policy",
+      "message": "What is the policy on collector editions restocking?",
+      "source": "box-sets.md",
+      "answer_contains": [
+        "distributor"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-03",
+      "kind": "policy",
+      "message": "What is the policy for photos of damaged discs?",
+      "source": "damaged-discs.md",
+      "answer_contains": [
+        "photos",
+        "30 days"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-04",
+      "kind": "policy",
+      "message": "What is the policy for disc damage replacements?",
+      "source": "damaged-discs.md",
+      "answer_contains": [
+        "replacement",
+        "approval"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-05",
+      "kind": "policy",
+      "message": "What is the policy for playback troubleshooting?",
+      "source": "disc-playback.md",
+      "answer_contains": [
+        "second compatible player"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-06",
+      "kind": "policy",
+      "message": "What is the policy for cleaning fingerprints?",
+      "source": "disc-playback.md",
+      "answer_contains": [
+        "microfiber",
+        "center outward"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-07",
+      "kind": "policy",
+      "message": "What is the policy guide for DVD quality?",
+      "source": "format-guide.md",
+      "answer_contains": [
+        "standard definition"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-08",
+      "kind": "policy",
+      "message": "What is the policy guide for 4K players?",
+      "source": "format-guide.md",
+      "answer_contains": [
+        "compatible 4K"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-09",
+      "kind": "policy",
+      "message": "What is the policy on order address changes?",
+      "source": "order-changes.md",
+      "answer_contains": [
+        "before warehouse packing"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-10",
+      "kind": "policy",
+      "message": "What is the policy for combining orders?",
+      "source": "order-changes.md",
+      "answer_contains": [
+        "cannot combine"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-11",
+      "kind": "policy",
+      "message": "What is the policy for preorder charges?",
+      "source": "preorders.md",
+      "answer_contains": [
+        "when the order is placed"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-12",
+      "kind": "policy",
+      "message": "What is the policy for preorder street dates?",
+      "source": "preorders.md",
+      "answer_contains": [
+        "distributor"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-13",
+      "kind": "policy",
+      "message": "What is the policy for simulated refunds?",
+      "source": "refunds.md",
+      "answer_contains": [
+        "human",
+        "approve"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-14",
+      "kind": "policy",
+      "message": "What is the policy for refund payments in this demo?",
+      "source": "refunds.md",
+      "answer_contains": [
+        "never connect"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-15",
+      "kind": "policy",
+      "message": "What is the policy guide for Region A?",
+      "source": "region-codes.md",
+      "answer_contains": [
+        "North America"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-16",
+      "kind": "policy",
+      "message": "What is the policy guide for 4K region locks?",
+      "source": "region-codes.md",
+      "answer_contains": [
+        "bonus discs"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-17",
+      "kind": "policy",
+      "message": "What is the policy for unopened returns?",
+      "source": "returns.md",
+      "answer_contains": [
+        "30 days"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-18",
+      "kind": "policy",
+      "message": "What is the policy for opened returns?",
+      "source": "returns.md",
+      "answer_contains": [
+        "defective",
+        "damaged"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-19",
+      "kind": "policy",
+      "message": "What is the policy for economy shipping times?",
+      "source": "shipping.md",
+      "answer_contains": [
+        "five to eight"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-20",
+      "kind": "policy",
+      "message": "What is the policy for shipping tracking?",
+      "source": "shipping.md",
+      "answer_contains": [
+        "carrier accepts"
+      ],
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-21",
+      "kind": "sql",
+      "message": "Count all orders",
+      "expected_rows": [
+        {
+          "order_count": 6
+        }
+      ],
+      "source": "business database",
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-22",
+      "kind": "sql",
+      "message": "Count all customers",
+      "expected_rows": [
+        {
+          "customer_count": 3
+        }
+      ],
+      "source": "business database",
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-23",
+      "kind": "sql",
+      "message": "Count all products",
+      "expected_rows": [
+        {
+          "product_count": 5
+        }
+      ],
+      "source": "business database",
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-24",
+      "kind": "sql",
+      "message": "Count all units ordered",
+      "expected_rows": [
+        {
+          "units": 9
+        }
+      ],
+      "source": "business database",
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-25",
+      "kind": "sql",
+      "message": "Count total order revenue cents",
+      "expected_rows": [
+        {
+          "revenue_cents": 27391
+        }
+      ],
+      "source": "business database",
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-26",
+      "kind": "sql",
+      "message": "Count orders by customer",
+      "expected_rows": [
+        {
+          "customer_id": 1,
+          "orders": 2
+        },
+        {
+          "customer_id": 2,
+          "orders": 2
+        },
+        {
+          "customer_id": 3,
+          "orders": 2
+        }
+      ],
+      "source": "business database",
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-27",
+      "kind": "sql",
+      "message": "Count product price range",
+      "expected_rows": [
+        {
+          "minimum": 1299,
+          "maximum": 7999
+        }
+      ],
+      "source": "business database",
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-28",
+      "kind": "sql",
+      "message": "Count orders with shipped status",
+      "expected_rows": [
+        {
+          "shipped": 1
+        }
+      ],
+      "source": "business database",
+      "database": "unchanged"
+    },
+    {
+      "case_id": "conversation-29",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3001.",
+      "order_number": "ORD-3001",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "approved"
+      ],
+      "event": null,
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-30",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3001.",
+      "order_number": "ORD-3001",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "already"
+      ],
+      "event": null,
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-31",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3001.",
+      "order_number": "ORD-3001",
+      "create_order": true,
+      "decision": "reject",
+      "expected_status": "approved",
+      "answer_contains": [
+        "already"
+      ],
+      "event": null,
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-32",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3002.",
+      "order_number": "ORD-3002",
+      "create_order": true,
+      "decision": "reject",
+      "expected_status": "rejected",
+      "answer_contains": [
+        "rejected"
+      ],
+      "event": null,
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-33",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3002.",
+      "order_number": "ORD-3002",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "approved"
+      ],
+      "event": null,
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-34",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3003.",
+      "order_number": "ORD-3003",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "approved"
+      ],
+      "event": "replay",
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-35",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3004.",
+      "order_number": "ORD-3004",
+      "create_order": true,
+      "decision": "reject",
+      "expected_status": "rejected",
+      "answer_contains": [
+        "rejected"
+      ],
+      "event": "replay",
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-36",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3005.",
+      "order_number": "ORD-3005",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "approved"
+      ],
+      "event": "conflict",
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-37",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3006.",
+      "order_number": "ORD-3006",
+      "create_order": true,
+      "decision": "reject",
+      "expected_status": "rejected",
+      "answer_contains": [
+        "rejected"
+      ],
+      "event": "conflict",
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-38",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3007.",
+      "order_number": "ORD-3007",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "approved"
+      ],
+      "event": "redis-loss-paused",
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-39",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3008.",
+      "order_number": "ORD-3008",
+      "create_order": true,
+      "decision": "reject",
+      "expected_status": "rejected",
+      "answer_contains": [
+        "rejected"
+      ],
+      "event": "redis-loss-paused",
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-40",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3009.",
+      "order_number": "ORD-3009",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "approved"
+      ],
+      "event": "worker-restart-paused",
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-41",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3010.",
+      "order_number": "ORD-3010",
+      "create_order": true,
+      "decision": "reject",
+      "expected_status": "rejected",
+      "answer_contains": [
+        "rejected"
+      ],
+      "event": "worker-restart-paused",
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-42",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3011.",
+      "order_number": "ORD-3011",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "approved"
+      ],
+      "event": "restart-completed",
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-43",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3012. [crash-after-action-14]",
+      "order_number": "ORD-3012",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "approved"
+      ],
+      "event": "crash-after-action",
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-44",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3013. [crash-after-action-15]",
+      "order_number": "ORD-3013",
+      "create_order": true,
+      "decision": "reject",
+      "expected_status": "rejected",
+      "answer_contains": [
+        "rejected"
+      ],
+      "event": "crash-after-action",
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-45",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-99991.",
+      "order_number": "ORD-99991",
+      "create_order": false,
+      "decision": "approve",
+      "expected_status": null,
+      "answer_contains": [
+        "not found"
+      ],
+      "event": null,
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-46",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-99992.",
+      "order_number": "ORD-99992",
+      "create_order": false,
+      "decision": "reject",
+      "expected_status": null,
+      "answer_contains": [
+        "not found"
+      ],
+      "event": null,
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-47",
+      "kind": "refund",
+      "message": "Refund my damaged disc, I do not know the order number.",
+      "order_number": null,
+      "create_order": false,
+      "decision": "approve",
+      "expected_status": null,
+      "answer_contains": [
+        "required"
+      ],
+      "event": null,
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-48",
+      "kind": "refund",
+      "message": "Refund my damaged disc, I do not know the order number.",
+      "order_number": null,
+      "create_order": false,
+      "decision": "reject",
+      "expected_status": null,
+      "answer_contains": [
+        "required"
+      ],
+      "event": null,
+      "expected_actions": 0
+    },
+    {
+      "case_id": "conversation-49",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3014.",
+      "order_number": "ORD-3014",
+      "create_order": true,
+      "decision": "approve",
+      "expected_status": "approved",
+      "answer_contains": [
+        "approved"
+      ],
+      "event": "multi-turn",
+      "expected_actions": 1
+    },
+    {
+      "case_id": "conversation-50",
+      "kind": "refund",
+      "message": "Refund my damaged order ORD-3014.",
+      "order_number": "ORD-3014",
+      "create_order": true,
+      "decision": "reject",
+      "expected_status": "approved",
+      "answer_contains": [
+        "already"
+      ],
+      "event": "multi-turn",
+      "expected_actions": 1
+    }
+  ]
+}

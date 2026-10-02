@@ -1,0 +1,8 @@
+NAME                                     IMAGE                                  COMMAND                  SERVICE            CREATED          STATUS                      PORTS
+support-gap-live-v2-api-1                support-gap-live-v2-api                "./docker-entrypoint…"   api                11 minutes ago   Up 5 minutes                127.0.0.1:18082->8000/tcp
+support-gap-live-v2-evaluation-proxy-1   support-gap-live-v2-evaluation-proxy   "./docker-entrypoint…"   evaluation-proxy   11 minutes ago   Up 11 minutes               127.0.0.1:18084->8080/tcp
+support-gap-live-v2-fixture-provider-1   support-gap-live-v2-fixture-provider   "./docker-entrypoint…"   fixture-provider   11 minutes ago   Up 11 minutes               127.0.0.1:18083->8080/tcp
+support-gap-live-v2-init-1               support-gap-live-v2-init               "./docker-entrypoint…"   init               11 minutes ago   Exited (0) 10 minutes ago   
+support-gap-live-v2-postgres-1           pgvector/pgvector:pg16                 "docker-entrypoint.s…"   postgres           11 minutes ago   Up 11 minutes (healthy)     127.0.0.1:15482->5432/tcp
+support-gap-live-v2-redis-1              redis:7.4-alpine                       "docker-entrypoint.s…"   redis              11 minutes ago   Up 5 minutes (healthy)      127.0.0.1:16382->6379/tcp
+support-gap-live-v2-worker-1             support-gap-live-v2-worker             "./docker-entrypoint…"   worker             11 minutes ago   Up 5 minutes                

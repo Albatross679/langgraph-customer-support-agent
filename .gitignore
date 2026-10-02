@@ -6,3 +6,10 @@ node_modules/
 dist/
 .pytest_cache/
 .ruff_cache/
+.browser-tools/
+.firecrawl/
+.test-tmp/
+evidence/support-gap-bridge/evaluation-*.json
+evidence/support-gap-bridge/*.pid
+.evaluation-allowance.json
+.support-evaluation-state/

@@ -1,0 +1,73 @@
+{
+  "source_files": {
+    "src/support_copilot/__init__.py": "65c79dca2a3dcdc46a562c6973e660b4abbf0ffa24eab8a94749dd50f1dd48cb",
+    "src/support_copilot/api.py": "e458da5abbe3e4cbb5752ff4eb71eeb297b1747fb9750a6d782285483e62bf34",
+    "src/support_copilot/bootstrap.py": "6ed27ace1cb52b2f97d05a796cae9ce77c3d976d5b75270a7ce940562632b781",
+    "src/support_copilot/config.py": "c390dde6f9f03964e4664351f6208b0fac6b9d349057d9a98004cfaa358ff77c",
+    "src/support_copilot/db.py": "4a2494a9d80d117c95689b349fe776923518e0e1ddebbb88d0d4dcef7178f57e",
+    "src/support_copilot/graph.py": "2d7ed12b51beaf438ad6c852f7880cfaff6d00d356630017361cfd50c7e8981e",
+    "src/support_copilot/ingest.py": "ca46240c1f619589029a34c3458c5730277663aa013c263a977d4d54c0a59432",
+    "src/support_copilot/model.py": "05daa753b10f79de63f5e431efcd1afa12c69f00fbfd613175c0248b2c291229",
+    "src/support_copilot/run_store.py": "38b39671eef4dea662d25bdf66a173ec698bfd94b56b8fbffa1ba11f1fce9ec5",
+    "src/support_copilot/schema.sql": "4aa9e61f78a1e2236e7b30fd084234a89cd574fb64aba4529532e4d6bdcfe4f0",
+    "src/support_copilot/schemas.py": "773d15cb16d0e32d28d09965a5d3749bae80948d2a81d3ffad827d7181d8c88e",
+    "src/support_copilot/seed.py": "5cafd82461ede281ef9838bbd7f4566050b07201fab3d618f495b70c8d993cb7",
+    "src/support_copilot/worker.py": "11ca9183f5ab95092c76b2fab8d7e4155b2ad14ba82248fa44b2150cd6b4085b"
+  },
+  "images": [
+    {
+      "service": "api",
+      "image_id": "sha256:f817a6988ffac1eec4ab5918c49f27b5f3f83fe7fbf8f7882c0d4616d7770a47",
+      "image_reference": "support-gap-eval-api",
+      "labels": {
+        "com.docker.compose.config-hash": "5963a358581bb92ebcc30be216b5daf6ff174bab01768a8bf6c6391e1db4a1ab",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "redis:service_healthy:false,init:service_completed_successfully:false",
+        "com.docker.compose.image": "sha256:f817a6988ffac1eec4ab5918c49f27b5f3f83fe7fbf8f7882c0d4616d7770a47",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "support-gap-eval",
+        "com.docker.compose.project.config_files": "/Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/docker-compose.yml,/Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/tests/compose.integration.yml",
+        "com.docker.compose.project.working_dir": "/Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot",
+        "com.docker.compose.replace": "api-1",
+        "com.docker.compose.service": "api",
+        "com.docker.compose.version": "5.1.1"
+      }
+    },
+    {
+      "service": "worker",
+      "image_id": "sha256:7671571ce4ea2d103766e59e22618cabd34dc88932c3498e484c96144835a743",
+      "image_reference": "support-gap-eval-worker",
+      "labels": {
+        "com.docker.compose.config-hash": "885961bfd7d1b2316fe1c4aaa94cb370b761967bcc493161054e67a218b32e17",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "init:service_completed_successfully:false,redis:service_healthy:false",
+        "com.docker.compose.image": "sha256:7671571ce4ea2d103766e59e22618cabd34dc88932c3498e484c96144835a743",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "support-gap-eval",
+        "com.docker.compose.project.config_files": "/Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/docker-compose.yml,/Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/tests/compose.integration.yml",
+        "com.docker.compose.project.working_dir": "/Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot",
+        "com.docker.compose.replace": "worker-1",
+        "com.docker.compose.service": "worker",
+        "com.docker.compose.version": "5.1.1"
+      }
+    },
+    {
+      "service": "fixture-provider",
+      "image_id": "sha256:803519d0b0dd8669e87d141303755c50bab11a2dfa9ff7533171a13464b72400",
+      "image_reference": "support-gap-eval-fixture-provider",
+      "labels": {
+        "com.docker.compose.config-hash": "811128233f1808f39fd750158d453486bfa31818c300eda806fc009a844f3a7a",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:803519d0b0dd8669e87d141303755c50bab11a2dfa9ff7533171a13464b72400",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "support-gap-eval",
+        "com.docker.compose.project.config_files": "/Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/docker-compose.yml,/Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/tests/compose.integration.yml",
+        "com.docker.compose.project.working_dir": "/Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot",
+        "com.docker.compose.replace": "fixture-provider-1",
+        "com.docker.compose.service": "fixture-provider",
+        "com.docker.compose.version": "5.1.1"
+      }
+    }
+  ]
+}

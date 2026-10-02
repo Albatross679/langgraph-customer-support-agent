@@ -1,0 +1,25 @@
+{
+  "sha256": "3998ba7063431bba6dfda1ed21bb907f38d52961c1db331d8bb774f155df28f5",
+  "info": {
+    "title": "Portfolio Support Copilot",
+    "version": "0.1.0"
+  },
+  "paths": [
+    "/health",
+    "/customers/identify",
+    "/customers/{customer_id}/orders",
+    "/settings/daily-run-limit",
+    "/runs",
+    "/customers/{customer_id}/runs/{run_id}",
+    "/runs/{run_id}",
+    "/runs/{run_id}/decision",
+    "/customers",
+    "/customers/{customer_id}",
+    "/products",
+    "/products/{product_id}",
+    "/orders",
+    "/orders/{order_id}"
+  ],
+  "source_revision_verified": false,
+  "image_revision_verified": false
+}

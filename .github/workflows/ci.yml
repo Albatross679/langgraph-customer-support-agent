@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+  pull_request:
 
 jobs:
   lint:
@@ -23,6 +24,38 @@ jobs:
           python-version: "3.12"
       - run: pip install . --group dev
       - run: pytest -m "not integration and not eval"
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: cd web && npm ci && npm test && npm run build
+
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install . --group dev
+      - name: Isolated real API, worker, Postgres and Redis
+        env:
+          OPENROUTER_API_KEY: ''
+        run: |
+          docker compose -p support-gap-ci -f docker-compose.yml -f tests/compose.integration.yml up -d --build
+          for _ in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:18082/ready; then break; fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:18082/ready
+          RUN_ISOLATED_INTEGRATION=1 pytest tests/test_refund_durability.py tests/test_refund_proposal_binding.py tests/test_legacy_action_projection.py
+      - name: Clean up isolated services
+        if: always()
+        run: docker compose -p support-gap-ci -f docker-compose.yml -f tests/compose.integration.yml down -v
 
   docker-build:
     runs-on: ubuntu-latest

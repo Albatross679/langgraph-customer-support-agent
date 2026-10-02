@@ -136,11 +136,11 @@ async def test_refund_pauses_then_records_human_approval() -> None:
     model = FakeModel(defaults("refund"))
     graph = build_graph(GraphDependencies(model, repository, FakeCache()), InMemorySaver())
     config = {"configurable": {"thread_id": "refund-thread"}}
-    await graph.ainvoke({"message": "Refund damaged ORD-1001"}, config=config)
+    await graph.ainvoke({"run_id": "refund-test", "message": "Refund damaged ORD-1001"}, config=config)
     paused = await graph.aget_state(config)
     assert paused.tasks[0].interrupts[0].value["proposed_refund"]["amount_cents"] == 2999
     completed = await graph.ainvoke(Command(resume="approve"), config=config)
-    assert completed["answer"] == "Grounded support reply"
+    assert completed["answer"] == "The simulated refund was approved."
     assert repository.refunds[0][1] is True
 
 

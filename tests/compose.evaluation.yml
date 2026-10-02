@@ -1,0 +1,26 @@
+# LIVE ONLY: firstmate must approve spending before starting init/proxy.
+# Use after docker-compose.yml and tests/compose.integration.yml, in a fresh task-owned project.
+services:
+  evaluation-proxy:
+    build: .
+    command: uvicorn scripts.evaluation_proxy:app --host 0.0.0.0 --port 8080
+    volumes:
+      - ${EVALUATION_ALLOWANCE_FILE:?Firstmate allowance receipt required}:/allowance.json:ro
+      - ${EVALUATION_BUDGET_DIR:?One persistent support-project budget directory required}:/evaluation-state
+    environment:
+      EVALUATION_ALLOWANCE_FILE: /allowance.json
+      EVALUATION_BUDGET_FILE: /evaluation-state/budget.json
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:?Approved evaluation key required}
+    ports: ["127.0.0.1:18084:8080"]
+  init:
+    environment:
+      OPENROUTER_API_KEY: proxy-auth-synthetic
+      OPENROUTER_BASE_URL: http://evaluation-proxy:8080
+    depends_on:
+      evaluation-proxy:
+        condition: service_started
+  worker:
+    command: arq scripts.evaluation_worker.WorkerSettings
+    environment:
+      OPENROUTER_API_KEY: proxy-auth-synthetic
+      OPENROUTER_BASE_URL: http://evaluation-proxy:8080

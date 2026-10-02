@@ -44,8 +44,15 @@ class FakeRepository:
             order_number=order_number or "unknown", amount_cents=2999, reason=reason
         )
 
-    async def record_simulated_refund(self, proposal: RefundProposal, approved: bool) -> None:
+    async def record_simulated_refund(
+        self, proposal: RefundProposal, approved: bool, request_id: str
+    ) -> str:
         self.refunds.append((proposal, approved))
+        return (
+            "The simulated refund was approved."
+            if approved
+            else "The simulated refund was rejected."
+        )
 
 
 class FakeCache:

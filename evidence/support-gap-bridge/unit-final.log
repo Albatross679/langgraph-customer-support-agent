@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.12, pytest-8.3.5, pluggy-1.6.0
+rootdir: /Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.14.2, langsmith-0.11.2, asyncio-0.26.0
+asyncio: mode=Mode.AUTO, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 67 items / 7 deselected / 60 selected
+
+tests/test_bootstrap.py .....                                            [  8%]
+tests/test_conversation_scoring.py .......                               [ 20%]
+tests/test_deploy_credentials.py ......                                  [ 30%]
+tests/test_evaluation_budget.py ..                                       [ 33%]
+tests/test_evaluation_restart.py .                                       [ 35%]
+tests/test_image_promotion.py ......                                     [ 45%]
+tests/test_nodes.py .........                                            [ 60%]
+tests/test_review_fixes.py .......................                       [ 98%]
+tests/test_worker_recovery.py .                                          [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/langgraph/checkpoint/base/__init__.py:18
+  /Users/qifanwen/.treehouse/portfolio-support-copilot-5eb287/2/portfolio-support-copilot/.venv/lib/python3.12/site-packages/langgraph/checkpoint/base/__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+    from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================= 60 passed, 7 deselected, 1 warning in 6.66s ==================

@@ -1,0 +1,34 @@
+{
+  "run": {
+    "run_id": "32b66269-8c9c-498e-9102-1c052e7fd02d",
+    "thread_id": "6aad31b1-fb07-4e91-b3b8-2408342ad922"
+  },
+  "body": "Support Copilot\nCustomer portal\nEmployee console\n\nLIVE RUN\n\nWatch the backend work.\n\nRefreshing every 2.5 seconds while the run is in progress.\n\nRefresh now\nRUN ID\n32b66269-8c9c-498e-9102-1c052e7fd02d\nSTATUS\nCompleted\nStructured extraction\nOrder number\nORD-3015\nProduct title\nNot available yet\nFormat\nunknown\nIssue type\ndamaged_disc\nSentiment\nfrustrated\nChosen route\n\nReturns - Refund\n\nThe customer explicitly requests a refund for a damaged order, which requires refund handling under the returns lane.\n\nThe backend selects the route and performs the policy or data lookup.\n\nFINAL ANSWER\n\nYour refund request for order ORD-3015 is under review. No refund has been issued yet. We will update you once the review is complete.",
+  "api": {
+    "run_id": "32b66269-8c9c-498e-9102-1c052e7fd02d",
+    "thread_id": "6aad31b1-fb07-4e91-b3b8-2408342ad922",
+    "status": "completed",
+    "created_at": "2026-10-02T01:59:20.146017Z",
+    "message_preview": "Refund my damaged order ORD-3015.",
+    "extraction": {
+      "order_number": "ORD-3015",
+      "product_title": null,
+      "media_format": "unknown",
+      "issue_type": "damaged_disc",
+      "sentiment": "frustrated"
+    },
+    "route": {
+      "lane": "returns",
+      "handler": "refund",
+      "rationale": "The customer explicitly requests a refund for a damaged order, which requires refund handling under the returns lane."
+    },
+    "proposed_refund": {
+      "order_number": "ORD-3015",
+      "amount_cents": 2999,
+      "currency": "USD",
+      "reason": "damaged_disc"
+    },
+    "answer": "Your refund request for order ORD-3015 is under review. No refund has been issued yet. We will update you once the review is complete.",
+    "error": null
+  }
+}

@@ -1,0 +1,375 @@
+ Image support-gap-review-api Building 
+ Image support-gap-review-worker Building 
+ Image support-gap-review-init Building 
+ Image support-gap-review-fixture-provider Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.35kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 547B done
+#2 DONE 0.0s
+
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [fixture-provider internal] load metadata for docker.io/library/node:22-alpine
+#5 DONE 0.4s
+
+#6 [worker internal] load metadata for docker.io/library/python:3.12-slim
+#6 DONE 0.4s
+
+#7 [init internal] load .dockerignore
+#7 transferring context: 134B done
+#7 DONE 0.0s
+
+#8 [api console-build 1/6] FROM docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402
+#8 resolve docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402 0.0s done
+#8 DONE 0.0s
+
+#9 [api stage-1  1/10] FROM docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+#9 resolve docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016 0.0s done
+#9 DONE 0.0s
+
+#10 [init internal] load build context
+#10 transferring context: 18.45kB done
+#10 DONE 0.0s
+
+#11 [api console-build 4/6] RUN npm ci
+#11 CACHED
+
+#12 [api console-build 5/6] COPY web ./
+#12 CACHED
+
+#13 [api console-build 2/6] WORKDIR /web
+#13 CACHED
+
+#14 [api console-build 3/6] COPY web/package*.json ./
+#14 CACHED
+
+#15 [init stage-1  2/10] WORKDIR /app
+#15 CACHED
+
+#16 [fixture-provider console-build 6/6] RUN npm run build
+#16 CACHED
+
+#17 [worker stage-1  3/10] COPY pyproject.toml README.md ./
+#17 DONE 0.0s
+
+#18 [fixture-provider stage-1  4/10] COPY src ./src
+#18 DONE 0.0s
+
+#19 [api stage-1  5/10] RUN pip install --no-cache-dir .
+#19 0.966 Processing /app
+#19 0.967   Installing build dependencies: started
+#19 2.476   Installing build dependencies: finished with status 'done'
+#19 2.477   Getting requirements to build wheel: started
+#19 2.636   Getting requirements to build wheel: finished with status 'done'
+#19 2.636   Preparing metadata (pyproject.toml): started
+#19 2.858   Preparing metadata (pyproject.toml): finished with status 'done'
+#19 2.987 Collecting arq==0.26.3 (from portfolio-support-copilot==0.2.0)
+#19 3.090   Downloading arq-0.26.3-py3-none-any.whl.metadata (2.7 kB)
+#19 3.189 Collecting fastapi==0.115.12 (from portfolio-support-copilot==0.2.0)
+#19 3.215   Downloading fastapi-0.115.12-py3-none-any.whl.metadata (27 kB)
+#19 3.267 Collecting httpx==0.28.1 (from portfolio-support-copilot==0.2.0)
+#19 3.295   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#19 3.335 Collecting langgraph-checkpoint-postgres==2.0.21 (from portfolio-support-copilot==0.2.0)
+#19 3.364   Downloading langgraph_checkpoint_postgres-2.0.21-py3-none-any.whl.metadata (4.0 kB)
+#19 3.431 Collecting langgraph==0.3.34 (from portfolio-support-copilot==0.2.0)
+#19 3.461   Downloading langgraph-0.3.34-py3-none-any.whl.metadata (7.9 kB)
+#19 3.506 Collecting psycopg==3.2.6 (from psycopg[binary,pool]==3.2.6->portfolio-support-copilot==0.2.0)
+#19 3.533   Downloading psycopg-3.2.6-py3-none-any.whl.metadata (4.4 kB)
+#19 3.573 Collecting pydantic-settings==2.8.1 (from portfolio-support-copilot==0.2.0)
+#19 3.604   Downloading pydantic_settings-2.8.1-py3-none-any.whl.metadata (3.5 kB)
+#19 3.722 Collecting pydantic==2.11.3 (from portfolio-support-copilot==0.2.0)
+#19 3.750   Downloading pydantic-2.11.3-py3-none-any.whl.metadata (65 kB)
+#19 3.815 Collecting python-dotenv==1.1.0 (from portfolio-support-copilot==0.2.0)
+#19 3.843   Downloading python_dotenv-1.1.0-py3-none-any.whl.metadata (24 kB)
+#19 3.923 Collecting sqlglot==30.17.0 (from portfolio-support-copilot==0.2.0)
+#19 3.952   Downloading sqlglot-30.17.0-py3-none-any.whl.metadata (25 kB)
+#19 3.997 Collecting uvicorn==0.34.1 (from uvicorn[standard]==0.34.1->portfolio-support-copilot==0.2.0)
+#19 4.026   Downloading uvicorn-0.34.1-py3-none-any.whl.metadata (6.5 kB)
+#19 4.071 Collecting click>=8.0 (from arq==0.26.3->portfolio-support-copilot==0.2.0)
+#19 4.097   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#19 4.142 Collecting redis<6,>=4.2.0 (from redis[hiredis]<6,>=4.2.0->arq==0.26.3->portfolio-support-copilot==0.2.0)
+#19 4.171   Downloading redis-5.3.1-py3-none-any.whl.metadata (9.2 kB)
+#19 4.218 Collecting starlette<0.47.0,>=0.40.0 (from fastapi==0.115.12->portfolio-support-copilot==0.2.0)
+#19 4.286   Downloading starlette-0.46.2-py3-none-any.whl.metadata (6.2 kB)
+#19 4.339 Collecting typing-extensions>=4.8.0 (from fastapi==0.115.12->portfolio-support-copilot==0.2.0)
+#19 4.367   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#19 4.414 Collecting anyio (from httpx==0.28.1->portfolio-support-copilot==0.2.0)
+#19 4.440   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+#19 4.481 Collecting certifi (from httpx==0.28.1->portfolio-support-copilot==0.2.0)
+#19 4.506   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#19 4.549 Collecting httpcore==1.* (from httpx==0.28.1->portfolio-support-copilot==0.2.0)
+#19 4.576   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+#19 4.615 Collecting idna (from httpx==0.28.1->portfolio-support-copilot==0.2.0)
+#19 4.645   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#19 4.704 Collecting langchain-core<0.4,>=0.1 (from langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 4.734   Downloading langchain_core-0.3.86-py3-none-any.whl.metadata (3.2 kB)
+#19 4.773 Collecting langgraph-checkpoint<3.0.0,>=2.0.10 (from langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 4.798   Downloading langgraph_checkpoint-2.1.2-py3-none-any.whl.metadata (4.2 kB)
+#19 4.836 Collecting langgraph-prebuilt<0.2,>=0.1.8 (from langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 4.861   Downloading langgraph_prebuilt-0.1.8-py3-none-any.whl.metadata (5.0 kB)
+#19 4.905 Collecting langgraph-sdk<0.2.0,>=0.1.42 (from langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 4.931   Downloading langgraph_sdk-0.1.74-py3-none-any.whl.metadata (1.5 kB)
+#19 5.018 Collecting xxhash<4.0.0,>=3.5.0 (from langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 5.051   Downloading xxhash-3.8.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (15 kB)
+#19 5.196 Collecting orjson>=3.10.1 (from langgraph-checkpoint-postgres==2.0.21->portfolio-support-copilot==0.2.0)
+#19 5.226   Downloading orjson-3.12.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (41 kB)
+#19 5.271 Collecting psycopg-pool<4.0.0,>=3.2.0 (from langgraph-checkpoint-postgres==2.0.21->portfolio-support-copilot==0.2.0)
+#19 5.294   Downloading psycopg_pool-3.3.3-py3-none-any.whl.metadata (2.8 kB)
+#19 5.381 Collecting psycopg-binary==3.2.6 (from psycopg[binary,pool]==3.2.6->portfolio-support-copilot==0.2.0)
+#19 5.407   Downloading psycopg_binary-3.2.6-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (2.8 kB)
+#19 5.439 Collecting annotated-types>=0.6.0 (from pydantic==2.11.3->portfolio-support-copilot==0.2.0)
+#19 5.465   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#19 5.779 Collecting pydantic-core==2.33.1 (from pydantic==2.11.3->portfolio-support-copilot==0.2.0)
+#19 5.809   Downloading pydantic_core-2.33.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (6.8 kB)
+#19 5.846 Collecting typing-inspection>=0.4.0 (from pydantic==2.11.3->portfolio-support-copilot==0.2.0)
+#19 5.914   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+#19 6.056 Collecting h11>=0.8 (from uvicorn==0.34.1->uvicorn[standard]==0.34.1->portfolio-support-copilot==0.2.0)
+#19 6.086   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#19 6.137 Collecting httptools>=0.6.3 (from uvicorn[standard]==0.34.1->portfolio-support-copilot==0.2.0)
+#19 6.163   Downloading httptools-0.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (3.5 kB)
+#19 6.206 Collecting pyyaml>=5.1 (from uvicorn[standard]==0.34.1->portfolio-support-copilot==0.2.0)
+#19 6.231   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.4 kB)
+#19 6.287 Collecting uvloop!=0.15.0,!=0.15.1,>=0.14.0 (from uvicorn[standard]==0.34.1->portfolio-support-copilot==0.2.0)
+#19 6.315   Downloading uvloop-0.23.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (5.1 kB)
+#19 6.383 Collecting watchfiles>=0.13 (from uvicorn[standard]==0.34.1->portfolio-support-copilot==0.2.0)
+#19 6.410   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.9 kB)
+#19 6.481 Collecting websockets>=10.4 (from uvicorn[standard]==0.34.1->portfolio-support-copilot==0.2.0)
+#19 6.512   Downloading websockets-17.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (6.3 kB)
+#19 6.581 Collecting langsmith<1.0.0,>=0.3.45 (from langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 6.610   Downloading langsmith-0.14.3-py3-none-any.whl.metadata (22 kB)
+#19 6.651 Collecting tenacity!=8.4.0,<10.0.0,>=8.1.0 (from langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 6.678   Downloading tenacity-9.1.4-py3-none-any.whl.metadata (1.2 kB)
+#19 6.713 Collecting jsonpatch<2.0.0,>=1.33.0 (from langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 6.738   Downloading jsonpatch-1.33-py2.py3-none-any.whl.metadata (3.0 kB)
+#19 6.782 Collecting packaging<26.0.0,>=23.2.0 (from langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 6.811   Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+#19 6.925 Collecting uuid-utils<1.0,>=0.12.0 (from langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 6.955   Downloading uuid_utils-0.17.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (6.4 kB)
+#19 7.015 Collecting ormsgpack>=1.10.0 (from langgraph-checkpoint<3.0.0,>=2.0.10->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.045   Downloading ormsgpack-1.12.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (3.2 kB)
+#19 7.152 Collecting PyJWT>=2.9.0 (from redis<6,>=4.2.0->redis[hiredis]<6,>=4.2.0->arq==0.26.3->portfolio-support-copilot==0.2.0)
+#19 7.179   Downloading pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
+#19 7.260 Collecting hiredis>=3.0.0 (from redis[hiredis]<6,>=4.2.0->arq==0.26.3->portfolio-support-copilot==0.2.0)
+#19 7.289   Downloading hiredis-3.4.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (7.5 kB)
+#19 7.345 Collecting jsonpointer>=1.9 (from jsonpatch<2.0.0,>=1.33.0->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.370   Downloading jsonpointer-3.1.1-py3-none-any.whl.metadata (2.4 kB)
+#19 7.409 Collecting distro>=1.7.0 (from langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.435   Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+#19 7.469 Collecting httpx2<3,>=2 (from langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.494   Downloading httpx2-2.13.1-py3-none-any.whl.metadata (9.8 kB)
+#19 7.552 Collecting requests-toolbelt>=1.0.0 (from langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.581   Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl.metadata (14 kB)
+#19 7.628 Collecting requests>=2.0.0 (from langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.655   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#19 7.692 Collecting sniffio>=1.1 (from langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.719   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+#19 7.780 Collecting zstandard>=0.23.0 (from langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.812   Downloading zstandard-0.25.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl.metadata (3.3 kB)
+#19 7.857 Collecting httpcore2==2.13.1 (from httpx2<3,>=2->langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.888   Downloading httpcore2-2.13.1-py3-none-any.whl.metadata (26 kB)
+#19 7.926 Collecting truststore>=0.10 (from httpx2<3,>=2->langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 7.952   Downloading truststore-0.10.4-py3-none-any.whl.metadata (4.4 kB)
+#19 8.036 Collecting charset_normalizer<4,>=2 (from requests>=2.0.0->langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 8.076   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (46 kB)
+#19 8.118 Collecting urllib3<3,>=1.26 (from requests>=2.0.0->langsmith<1.0.0,>=0.3.45->langchain-core<0.4,>=0.1->langgraph==0.3.34->portfolio-support-copilot==0.2.0)
+#19 8.148   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+#19 8.196 Downloading arq-0.26.3-py3-none-any.whl (25 kB)
+#19 8.225 Downloading fastapi-0.115.12-py3-none-any.whl (95 kB)
+#19 8.262 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#19 8.289 Downloading langgraph-0.3.34-py3-none-any.whl (148 kB)
+#19 8.324 Downloading langgraph_checkpoint_postgres-2.0.21-py3-none-any.whl (39 kB)
+#19 8.354 Downloading psycopg-3.2.6-py3-none-any.whl (199 kB)
+#19 8.392 Downloading pydantic-2.11.3-py3-none-any.whl (443 kB)
+#19 8.446 Downloading pydantic_settings-2.8.1-py3-none-any.whl (30 kB)
+#19 8.473 Downloading python_dotenv-1.1.0-py3-none-any.whl (20 kB)
+#19 8.499 Downloading sqlglot-30.17.0-py3-none-any.whl (741 kB)
+#19 8.512    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 741.8/741.8 kB 69.6 MB/s eta 0:00:00
+#19 8.542 Downloading uvicorn-0.34.1-py3-none-any.whl (62 kB)
+#19 8.571 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#19 8.602 Downloading psycopg_binary-3.2.6-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (4.5 MB)
+#19 8.698    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 48.4 MB/s eta 0:00:00
+#19 8.727 Downloading pydantic_core-2.33.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (1.9 MB)
+#19 8.750    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 84.2 MB/s eta 0:00:00
+#19 8.780 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#19 8.806 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#19 8.836 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#19 8.869 Downloading httptools-0.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (518 kB)
+#19 8.902 Downloading langchain_core-0.3.86-py3-none-any.whl (461 kB)
+#19 8.935 Downloading langgraph_checkpoint-2.1.2-py3-none-any.whl (45 kB)
+#19 8.962 Downloading langgraph_prebuilt-0.1.8-py3-none-any.whl (25 kB)
+#19 8.988 Downloading langgraph_sdk-0.1.74-py3-none-any.whl (50 kB)
+#19 9.017 Downloading orjson-3.12.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (130 kB)
+#19 9.050 Downloading psycopg_pool-3.3.3-py3-none-any.whl (40 kB)
+#19 9.077 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (775 kB)
+#19 9.088    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 775.1/775.1 kB 115.5 MB/s eta 0:00:00
+#19 9.120 Downloading redis-5.3.1-py3-none-any.whl (272 kB)
+#19 9.151 Downloading starlette-0.46.2-py3-none-any.whl (72 kB)
+#19 9.182 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#19 9.215 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#19 9.251 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#19 9.279 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+#19 9.306 Downloading uvloop-0.23.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (4.4 MB)
+#19 9.379    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 61.7 MB/s eta 0:00:00
+#19 9.405 Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (454 kB)
+#19 9.442 Downloading websockets-17.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (225 kB)
+#19 9.472 Downloading xxhash-3.8.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (241 kB)
+#19 9.501 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#19 9.530 Downloading hiredis-3.4.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (307 kB)
+#19 9.561 Downloading jsonpatch-1.33-py2.py3-none-any.whl (12 kB)
+#19 9.591 Downloading langsmith-0.14.3-py3-none-any.whl (813 kB)
+#19 9.603    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 813.9/813.9 kB 121.1 MB/s eta 0:00:00
+#19 9.636 Downloading ormsgpack-1.12.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (203 kB)
+#19 9.670 Downloading packaging-25.0-py3-none-any.whl (66 kB)
+#19 9.700 Downloading pyjwt-2.15.1-py3-none-any.whl (33 kB)
+#19 9.732 Downloading tenacity-9.1.4-py3-none-any.whl (28 kB)
+#19 9.767 Downloading uuid_utils-0.17.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (320 kB)
+#19 9.799 Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+#19 9.825 Downloading httpx2-2.13.1-py3-none-any.whl (95 kB)
+#19 9.853 Downloading httpcore2-2.13.1-py3-none-any.whl (83 kB)
+#19 9.888 Downloading jsonpointer-3.1.1-py3-none-any.whl (7.7 kB)
+#19 9.917 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#19 9.943 Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl (54 kB)
+#19 9.973 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#19 10.00 Downloading zstandard-0.25.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (5.1 MB)
+#19 10.08    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 72.4 MB/s eta 0:00:00
+#19 10.11 Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (246 kB)
+#19 10.14 Downloading truststore-0.10.4-py3-none-any.whl (18 kB)
+#19 10.16 Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#19 10.21 Building wheels for collected packages: portfolio-support-copilot
+#19 10.21   Building wheel for portfolio-support-copilot (pyproject.toml): started
+#19 10.28   Building wheel for portfolio-support-copilot (pyproject.toml): finished with status 'done'
+#19 10.28   Created wheel for portfolio-support-copilot: filename=portfolio_support_copilot-0.2.0-py3-none-any.whl size=33010 sha256=e9b6d5b4e511d19dd75dcf324e3eed70985a1b714a1bdef733987c8fd6298d0b
+#19 10.28   Stored in directory: /tmp/pip-ephem-wheel-cache-a48wnu80/wheels/54/1b/b7/aa63e25c8f14f4f2ae7b04e6097bdecb770e455c5c1ee0a600
+#19 10.28 Successfully built portfolio-support-copilot
+#19 10.32 Installing collected packages: zstandard, xxhash, websockets, uvloop, uuid-utils, urllib3, typing-extensions, truststore, tenacity, sqlglot, sniffio, pyyaml, python-dotenv, PyJWT, psycopg-binary, packaging, ormsgpack, orjson, jsonpointer, idna, httptools, hiredis, h11, distro, click, charset_normalizer, certifi, annotated-types, uvicorn, typing-inspection, requests, redis, pydantic-core, psycopg-pool, psycopg, jsonpatch, httpcore2, httpcore, anyio, watchfiles, starlette, requests-toolbelt, pydantic, httpx2, httpx, pydantic-settings, langsmith, langgraph-sdk, fastapi, arq, langchain-core, langgraph-checkpoint, langgraph-prebuilt, langgraph-checkpoint-postgres, langgraph, portfolio-support-copilot
+#19 12.54 Successfully installed PyJWT-2.15.1 annotated-types-0.8.0 anyio-4.15.1 arq-0.26.3 certifi-2026.7.22 charset_normalizer-3.5.2 click-8.5.0 distro-1.9.0 fastapi-0.115.12 h11-0.16.0 hiredis-3.4.2 httpcore-1.0.9 httpcore2-2.13.1 httptools-0.8.0 httpx-0.28.1 httpx2-2.13.1 idna-3.20 jsonpatch-1.33 jsonpointer-3.1.1 langchain-core-0.3.86 langgraph-0.3.34 langgraph-checkpoint-2.1.2 langgraph-checkpoint-postgres-2.0.21 langgraph-prebuilt-0.1.8 langgraph-sdk-0.1.74 langsmith-0.14.3 orjson-3.12.0 ormsgpack-1.12.2 packaging-25.0 portfolio-support-copilot-0.2.0 psycopg-3.2.6 psycopg-binary-3.2.6 psycopg-pool-3.3.3 pydantic-2.11.3 pydantic-core-2.33.1 pydantic-settings-2.8.1 python-dotenv-1.1.0 pyyaml-6.0.3 redis-5.3.1 requests-2.34.2 requests-toolbelt-1.0.0 sniffio-1.3.1 sqlglot-30.17.0 starlette-0.46.2 tenacity-9.1.4 truststore-0.10.4 typing-extensions-4.16.0 typing-inspection-0.4.4 urllib3-2.8.0 uuid-utils-0.17.1 uvicorn-0.34.1 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.1 xxhash-3.8.1 zstandard-0.25.0
+#19 12.54 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#19 DONE 12.8s
+
+#20 [api stage-1  6/10] COPY scripts ./scripts
+#20 DONE 0.0s
+
+#21 [fixture-provider stage-1  7/10] COPY docs ./docs
+#21 DONE 0.1s
+
+#22 [api stage-1  8/10] COPY docker-entrypoint.sh ./
+#22 DONE 0.0s
+
+#23 [fixture-provider stage-1  9/10] COPY --from=console-build /web/dist ./web/dist
+#23 DONE 0.0s
+
+#24 [worker stage-1 10/10] RUN chmod +x docker-entrypoint.sh
+#24 DONE 0.1s
+
+#25 [api] exporting to image
+#25 exporting layers
+#25 exporting layers 2.7s done
+#25 exporting manifest sha256:1a9fcf80d3df52caceeb26f1c52b86998a04058fee7e717f8eed64d4edb3cbc3
+#25 exporting manifest sha256:1a9fcf80d3df52caceeb26f1c52b86998a04058fee7e717f8eed64d4edb3cbc3 0.1s done
+#25 exporting config sha256:530826cd9d34b38b05985cffd9a3d6df430367f8adcebe31862938522cb4d3f6 0.0s done
+#25 exporting attestation manifest sha256:71bd09a25c7ed106c4aa3e3290cc8b23296eeae222e9c9b324f3f45beac1681a
+#25 exporting attestation manifest sha256:71bd09a25c7ed106c4aa3e3290cc8b23296eeae222e9c9b324f3f45beac1681a 0.1s done
+#25 exporting manifest list sha256:8f8123b1d5fb07caf45d397b4922934c00a19af32904cecb0d8e86283be5cbb0 0.0s done
+#25 naming to docker.io/library/support-gap-review-api:latest 0.0s done
+#25 unpacking to docker.io/library/support-gap-review-api:latest
+#25 ...
+
+#26 [fixture-provider] exporting to image
+#26 exporting layers 2.7s done
+#26 exporting manifest sha256:673b01c60c5f2be3f17532750028457ad992061314981a6d2e6f9232f385732e 0.1s done
+#26 exporting config sha256:a7d601db578f545679c912dbffc51d58af4b4fc45ab3851fa8f489d748520516 0.0s done
+#26 exporting attestation manifest sha256:b0eb25de9d52e4f95a2fb1d3f773bfbdf79bd172e05356f090f33895a0cf37b8 0.1s done
+#26 exporting manifest list sha256:b958f00555cbf81107eabaad5bce0005c218d1c1846966b8fb1d803740282f08 0.0s done
+#26 naming to docker.io/library/support-gap-review-fixture-provider:latest 0.0s done
+#26 unpacking to docker.io/library/support-gap-review-fixture-provider:latest 2.3s done
+#26 DONE 5.4s
+
+#25 [api] exporting to image
+#25 unpacking to docker.io/library/support-gap-review-api:latest 2.3s done
+#25 ...
+
+#27 [init] exporting to image
+#27 exporting layers 2.7s done
+#27 exporting manifest sha256:38c3eea2d31334d74a672e5373781cca4260980901abe4dc3397f06ac8492a76 0.1s done
+#27 exporting config sha256:db6b9616f3b0fa719ab4bac76b96bdcdb3f81265a1b5a4860a19f05a966bd749 0.0s done
+#27 exporting attestation manifest sha256:00a6e12032ef5068dcfb5800d0fd4814cb49105ccf22bc95a28764769f298309 0.1s done
+#27 exporting manifest list sha256:24849924f64abcd8c8194cecfd314f0222e250c5f0c88fc90c3b50855211d45c 0.0s done
+#27 naming to docker.io/library/support-gap-review-init:latest done
+#27 unpacking to docker.io/library/support-gap-review-init:latest 2.3s done
+#27 DONE 5.4s
+
+#25 [api] exporting to image
+#25 DONE 5.4s
+
+#28 [worker] exporting to image
+#28 exporting layers 2.7s done
+#28 exporting manifest sha256:3a7d7371b5523918a7419fdb4727bf38cb75f4458bcf7fb77384db9ced50ca43 0.1s done
+#28 exporting config sha256:bb13f3c51c1d4ea687e8afe3122ca44e82785b6b6330575a77c191ef65b670da 0.0s done
+#28 exporting attestation manifest sha256:57a02e9175a7fc72fbc46302cd674519e3325afdd2bd71dab0009775df78003d 0.1s done
+#28 exporting manifest list sha256:bc4b461699db2831a48ebae8bf2cdcf9abc23d9aadf528be6e9124d876369e2c 0.0s done
+#28 naming to docker.io/library/support-gap-review-worker:latest done
+#28 unpacking to docker.io/library/support-gap-review-worker:latest 2.3s done
+#28 DONE 5.4s
+
+#29 [fixture-provider] resolving provenance for metadata file
+#29 DONE 0.1s
+
+#30 [worker] resolving provenance for metadata file
+#30 DONE 0.1s
+
+#31 [init] resolving provenance for metadata file
+#31 DONE 0.0s
+
+#32 [api] resolving provenance for metadata file
+#32 DONE 0.1s
+ Image support-gap-review-init Built 
+ Image support-gap-review-worker Built 
+ Image support-gap-review-api Built 
+ Image support-gap-review-fixture-provider Built 
+ Network support-gap-review_default Creating 
+ Network support-gap-review_default Created 
+ Volume support-gap-review_postgres_data Creating 
+ Volume support-gap-review_postgres_data Created 
+ Volume support-gap-review_redis_data Creating 
+ Volume support-gap-review_redis_data Created 
+ Container support-gap-review-redis-1 Creating 
+ Container support-gap-review-postgres-1 Creating 
+ Container support-gap-review-fixture-provider-1 Creating 
+ Container support-gap-review-postgres-1 Created 
+ Container support-gap-review-redis-1 Created 
+ Container support-gap-review-fixture-provider-1 Created 
+ Container support-gap-review-init-1 Creating 
+ Container support-gap-review-init-1 Created 
+ Container support-gap-review-worker-1 Creating 
+ Container support-gap-review-api-1 Creating 
+ Container support-gap-review-worker-1 Created 
+ Container support-gap-review-api-1 Created 
+ Container support-gap-review-postgres-1 Starting 
+ Container support-gap-review-fixture-provider-1 Starting 
+ Container support-gap-review-redis-1 Starting 
+ Container support-gap-review-redis-1 Started 
+ Container support-gap-review-fixture-provider-1 Started 
+ Container support-gap-review-postgres-1 Started 
+ Container support-gap-review-postgres-1 Waiting 
+ Container support-gap-review-postgres-1 Healthy 
+ Container support-gap-review-init-1 Starting 
+ Container support-gap-review-init-1 Started 
+ Container support-gap-review-init-1 Waiting 
+ Container support-gap-review-redis-1 Waiting 
+ Container support-gap-review-redis-1 Waiting 
+ Container support-gap-review-init-1 Waiting 
+ Container support-gap-review-redis-1 Healthy 
+ Container support-gap-review-redis-1 Healthy 
+ Container support-gap-review-init-1 Exited 
+ Container support-gap-review-worker-1 Starting 
+ Container support-gap-review-init-1 Exited 
+ Container support-gap-review-api-1 Starting 
+ Container support-gap-review-worker-1 Started 
+ Container support-gap-review-api-1 Started 

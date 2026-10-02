@@ -1,0 +1,4 @@
+Script ran on page and returned:
+```json
+{"title":"Support Copilot","url":"http://18.219.217.47:8000/","width":1200,"overflow":false,"text":"Support Copilot\nCustomer portal\nEmployee console\n\nCUSTOMER PORTAL\n\nGet support.\n\nSend a message anytime, or look up an order and its refund status.\n\nCheck your orders\nSend a support message\n\nAsk about returns, region codes, shipping, preorders, damaged discs, order status, or refund status. For example: “Can I return an unopened disc?” or “Where is my order?”\n\nMessage\nStart support request"}
+```
