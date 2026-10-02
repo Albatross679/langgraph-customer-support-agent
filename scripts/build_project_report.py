@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate the self-contained Portfolio Support Copilot project report."""
+"""Regenerate the self-contained LangGraph Customer Support Agent project report."""
 
 from __future__ import annotations
 
@@ -7,7 +7,6 @@ import re
 import subprocess
 import sys
 import tempfile
-from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -228,7 +227,18 @@ def main() -> None:
     )
 
     parts = [
-        tags(["Python", "FastAPI", "LangGraph", "Postgres", "React"]),
+        tags(
+            [
+                "LangGraph",
+                "RAG",
+                "FastAPI",
+                "PostgreSQL",
+                "AWS EC2",
+                "Human-in-the-loop",
+                "CI/CD",
+                "Docker",
+            ]
+        ),
         bullet_list(
             [
                 "Built a customer-support agent for a mock online movie-media store. A LangGraph graph extracts structured fields from each message using OpenRouter structured output against Pydantic schemas, routes it to one of three handlers, answers policy questions with RAG over pgvector and data questions with model-written read-only SQL against Postgres, and pauses refund requests for human approval with interrupt() and a Postgres checkpointer.",
@@ -321,7 +331,8 @@ def main() -> None:
         numbered_section(8, "Conclusion"),
         R.para(
             "Portfolio Support Copilot is a compact demonstration of an agent workflow with typed inputs, explicit routing, evidence-specific handlers, and a durable approval gate. "
-            f"Its boundaries are visible in the API, graph, database, and evaluation rather than hidden behind a single chat response {R.cite(4)}."
+            "Its boundaries are visible in the API, graph, database, and evaluation rather than hidden behind a single chat response. "
+            f"The source code is public {R.cite(4)}."
         ),
         numbered_section(9, "References"),
         R.references(
@@ -334,8 +345,8 @@ def main() -> None:
         ),
     ]
     R.build(
-        "LangGraph mock online movie-media store customer support agent",
-        f"Qifan Wen · qifanwen679@gmail.com · {date.today().strftime('%B %Y')}",
+        "LangGraph Customer Support Agent",
+        "Qifan Wen · qifanwen679@gmail.com · August 2026",
         parts,
         ROOT / "reports/project-report.html",
     )
